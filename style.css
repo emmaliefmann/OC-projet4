@@ -53,6 +53,7 @@ ul, p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     padding: 10px;
     margin-top: 25px;
 }
@@ -69,6 +70,9 @@ ul, p {
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+.single-post {
+    margin: 20px;
 }
 
 .blog-post {
@@ -89,7 +93,7 @@ footer {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    padding: 10px;
+    padding: 10px 0 10px 0;
     color: white;
     background-color: black;
     width: 100%;
@@ -135,12 +139,15 @@ footer {
         flex-direction: row;
         justify-content: space-around;
     }
+    .author-photo {
+        width: 150px;
+    }
     .posts-section {
         width: 100%;
         flex-direction: column;
     }
     .blog-post {
         width: 100%;
-        margin: 20px;
+        margin: 20px 0 20px 0;
     }
 }
