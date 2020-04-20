@@ -47,13 +47,13 @@
         ?>
         <div class="single-post">
             <h2>
-                <?php echo htmlspecialchars($data['title']) ?>
+                <?= htmlspecialchars($data['title']) ?>
             </h2>
             <h3>
-                Publié : <?php echo htmlspecialchars($data['creation_date_fr']);?>
+                Publié : <?= htmlspecialchars($data['creation_date_fr']);?>
             </h3>
             <p>
-                <?php echo nl2br(htmlspecialchars($data['content']));?>
+                <?=nl2br(htmlspecialchars($data['content']));?>
             </p>
         </div>
         <div class="comments-container">
@@ -66,8 +66,8 @@
             {
             ?>
             <div>
-                <h4><?php echo htmlspecialchars($data['author']);?> publié : <?php echo htmlspecialchars($data['comment_date_fr']);?> </h4>
-                <p><?php echo nl2br(htmlspecialchars($data['comment'])); ?> </p>
+                <h4><?= htmlspecialchars($data['author']);?> publié : <?php echo htmlspecialchars($data['comment_date_fr']);?> </h4>
+                <p><?= nl2br(htmlspecialchars($data['comment'])); ?> </p>
             </div>
         <?php
         }
