@@ -52,7 +52,7 @@
                    <?= nl2br(htmlspecialchars($data['content']));?>
                
                <br/>
-               <a href="comments.php?post=<?php echo $data['id']; ?>">Comments</a>
+               <a href="post.php?id=<?= $data['id'] ?>">Comments</a>
                </p>
            </div>
            <?php 

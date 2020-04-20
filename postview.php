@@ -27,51 +27,29 @@
         <h1>Billet Simple pour l'Alaska</h1>
     </section>
     <main>
-        <?php
-
-        //connect to database
-        try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-        }
-
-        catch(Exception $e)
-        {
-            die('Erreur :' .$e->getMessage());
-        }
-        //get the singular post with prepare
-        $post = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?');
-        //$_GET['post] comes from URL on index page 
-        $post->execute(array($_GET['post']));
-        $data = $post->fetch();
-        ?>
         <div class="single-post">
             <h2>
-                <?= htmlspecialchars($data['title']) ?>
+                <?= htmlspecialchars($post['title']) ?>
             </h2>
             <h3>
-                Publié : <?= htmlspecialchars($data['creation_date_fr']);?>
+                Publié : <?= htmlspecialchars($post['creation_date_fr']);?>
             </h3>
             <p>
-                <?=nl2br(htmlspecialchars($data['content']));?>
+                <?=nl2br(htmlspecialchars($post['content']));?>
             </p>
         </div>
         <div class="comments-container">
             <h2>Commentaires</h2>
-            <?php
-            $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date');
-            $comments->execute(array($_GET['post']));
-
-            while ($data = $comments->fetch())
+           <?php
+            while ($comment = $comments->fetch())
             {
             ?>
             <div>
-                <h4><?= htmlspecialchars($data['author']);?> publié : <?php echo htmlspecialchars($data['comment_date_fr']);?> </h4>
-                <p><?= nl2br(htmlspecialchars($data['comment'])); ?> </p>
+                <h4><?= htmlspecialchars($comment['author'])?> </h4>
+                <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> </p>
             </div>
         <?php
         }
-        $comments->closeCursor();
         ?>
         </div>
     </main>
