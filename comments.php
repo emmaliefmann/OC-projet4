@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" value="Emma Liefmann" >
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <title>Billet Simple pour l'Alaska</title>
 </head>
@@ -39,7 +40,7 @@
             die('Erreur :' .$e->getMessage());
         }
         //get the singular post with prepare
-        $post = $db->prepare('SELECT id, title, content, creation_date FROM posts WHERE id = ?');
+        $post = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?');
         //$_GET['post] comes from URL on index page 
         $post->execute(array($_GET['post']));
         $data = $post->fetch();
@@ -48,9 +49,30 @@
             <h2>
                 <?php echo htmlspecialchars($data['title']) ?>
             </h2>
+            <h3>
+                Publié : <?php echo htmlspecialchars($data['creation_date_fr']);?>
+            </h3>
             <p>
                 <?php echo nl2br(htmlspecialchars($data['content']));?>
             </p>
+        </div>
+        <div class="comments-container">
+            <h2>Commentaires</h2>
+            <?php
+            $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date');
+            $comments->execute(array($_GET['post']));
+
+            while ($data = $comments->fetch())
+            {
+            ?>
+            <div>
+                <h4><?php echo htmlspecialchars($data['author']);?> publié : <?php echo htmlspecialchars($data['comment_date_fr']);?> </h4>
+                <p><?php echo nl2br(htmlspecialchars($data['comment'])); ?> </p>
+            </div>
+        <?php
+        }
+        $comments->closeCursor();
+        ?>
         </div>
     </main>
     <footer>

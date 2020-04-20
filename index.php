@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" value="Emma Liefmann" >
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    
     <title>Billet Simple pour l'Alaska</title>
 </head>
 <body>
@@ -48,7 +50,7 @@
                die('Error :' .$e->getMessage());
            }
            //request data from the posts table
-           $posts = $db->query('SELECT id, title, content, creation_date FROM posts ORDER BY creation_date');
+           $posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date');
         
            //as long as there is data, keep fetching it
            while ($data = $posts->fetch())
@@ -58,6 +60,7 @@
                <h3>
                    <?php echo htmlspecialchars($data['title']); ?>
                </h3>
+               <h4>Publié <?php echo htmlspecialchars($data['creation_date_fr'])?> </h4>
                <p>
                    <?php echo nl2br(htmlspecialchars($data['content']));?>
                
