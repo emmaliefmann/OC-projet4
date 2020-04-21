@@ -26,9 +26,7 @@
     <section class="title">
         <h1>Billet Simple pour l'Alaska</h1>
     </section>
-    <main>
         <?= $content ?>
-    </main>
     <footer>
         <p>Mentions Legales</p>
 

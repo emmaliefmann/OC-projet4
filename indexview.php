@@ -1,31 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" value="Emma Liefmann" >
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link href="public/css/style.css" rel="stylesheet">
-    <title>Billet Simple pour l'Alaska</title>
-</head>
-<body>
-    <header> 
-        <nav>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">A propos</a></li>
-                <li><a href="#">Chapitres</a></li>
-                <li><a href="admin.php">Admin</a></li>
-            </ul>  
-		</nav>
-    </header>
-    <section class="title">
-        <h1>Billet Simple pour l'Alaska</h1>
-    </section>
+<?php ob_start(); ?>
     <main class="page-container">
         <aside class="author-info">
             <img src="public/images/jean2.jpg" class="author-photo" alt="Photo de Jean" />
@@ -60,10 +33,6 @@
            ?>
         </div>
     </main>
-    <footer>
-        <p>Mentions Legales</p>
+    <?php $content = ob_get_clean(); ?>
 
-    </footer>
-    <script src="app.js"></script>
-</body>
-</html>
+    <?php require('template.php'); ?>
