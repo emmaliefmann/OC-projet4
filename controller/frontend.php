@@ -1,23 +1,30 @@
 <?php 
 
-require('model/frontend.php');
+require_once('model/postmanager.php');
+require_once('model/commentmanager.php');
 
 function listPosts()
 {
-    $posts = getPosts();
+    
+    $postManager = new PostManager();
+    $posts = $postManager->getPosts();
     require('view/frontend/indexview.php');
 }
 
 function post()
 {
-    $post = getPost($_GET['id']);
-    $comments = getComments($_GET['id']);
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
     require('view/frontend/postview.php');
 }
 
 function addComment($postId, $author, $comment)
 {
-    $affectedLines = addComments($postId, $author, $comment);
+    $commentManager = new CommentManager();
+    $affectedLines = $commentManager->addComments($postId, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire.');
