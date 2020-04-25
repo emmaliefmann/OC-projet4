@@ -1,16 +1,8 @@
 <?php
     function dbConnect()
-    {
-        try 
-        {
-            $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-            return $db;
-        }
-
-        catch(Exception $e)
-        {
-            die('Error :' .$e->getMessage());
-        }
+    {  
+        $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+        return $db;
     }
     function getPosts()
     {
@@ -38,4 +30,13 @@
         $comments->execute(array($postId));
 
             return $comments;
+    }
+
+    function addComments($postId, $author, $comment)
+    {
+        $db = dbConnect();
+        $newComment = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW() )');
+        $affectedLines = $newComment->execute(array($postId, $author, $comment));
+
+        return $affectedLines;
     }

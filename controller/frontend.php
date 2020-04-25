@@ -5,15 +5,24 @@ require('model/frontend.php');
 function listPosts()
 {
     $posts = getPosts();
-    //in tuto, file named listpostsview.php
     require('view/frontend/indexview.php');
 }
 
 function post()
 {
     $post = getPost($_GET['id']);
-    //the comments line wasn't in previous file, might be why it didn't work?
     $comments = getComments($_GET['id']);
-    
     require('view/frontend/postview.php');
+}
+
+function addComment($postId, $author, $comment)
+{
+    $affectedLines = addComments($postId, $author, $comment);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le commentaire.');
+    }
+    else {
+        header('location: index.php?action=post&id=' . $postId);
+    }
 }

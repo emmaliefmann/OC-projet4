@@ -20,7 +20,7 @@
             <ul class="nav-links">
                 <li><a href="#">A propos</a></li>
                 <li><a href="#">Chapitres</a></li>
-                <li><a href="admin.php">Admin</a></li>
+                <li><a href="view/admin.php">Admin</a></li>
             </ul>  
 		</nav>
     </header>
