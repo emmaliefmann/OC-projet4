@@ -1,12 +1,12 @@
 <?php 
 
-require('model.php');
+require('model/frontend.php');
 
 function listPosts()
 {
     $posts = getPosts();
     //in tuto, file named listpostsview.php
-    require('indexview.php');
+    require('view/frontend/indexview.php');
 }
 
 function post()
@@ -15,5 +15,5 @@ function post()
     //the comments line wasn't in previous file, might be why it didn't work?
     $comments = getComments($_GET['id']);
     
-    require('postview.php');
+    require('view/frontend/postview.php');
 }

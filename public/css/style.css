@@ -94,7 +94,7 @@ p {
 }
 /*=========== TITLE ============*/
 .title {
-    background-image: url("public/images/titleimage.jpg");
+    background-image: url("../images/titleimage.jpg");
     min-height: 400px;
     display: flex;
     justify-content: center;

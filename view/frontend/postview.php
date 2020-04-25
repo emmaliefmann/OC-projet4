@@ -21,20 +21,19 @@
                 <h4>Example comment</h4>
                 <p>Comment goes here but php query not working...</p>
             </div>
-           <!--As code for comments not working, 
-           comment out so rest of code executes. Removal of some ? in php tags for comments
-           <php
+           
+           <?php
             while ($comment = $comments->fetch())
             {
             ?>
             <div>
-                <h4>< htmlspecialchars($comment['author'])?> </h4>
-                <p>< nl2br(htmlspecialchars($comment['comment'])) ?> </p>
+                <h4><?= htmlspecialchars($comment['author'])?> </h4>
+                <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> </p>
             </div>
-        <php
+        <?php
         }
-        ?>-->
+        ?>
         </div>
     </main>
 <?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
+<?php require('view/frontend/template.php'); ?>

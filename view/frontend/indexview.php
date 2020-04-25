@@ -24,7 +24,7 @@
                    <?= nl2br(htmlspecialchars($data['content']));?>
                
                <br/>
-               <a href="post.php?id=<?= $data['id'] ?>">Comments</a>
+               <a href="index.php?action=post&id=<?= $data['id'] ?>">Comments</a>
                </p>
            </div>
            <?php 
@@ -35,4 +35,4 @@
     </main>
     <?php $content = ob_get_clean(); ?>
 
-    <?php require('template.php'); ?>
+    <?php require('view/frontend/template.php'); ?>

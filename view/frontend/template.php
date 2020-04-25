@@ -9,7 +9,8 @@
     <title>Billet Simple pour l'Alaska</title>
 </head>
 <body>
-    <header> 
+    <header>
+        <a href="index.php">Home</a> 
         <nav>
             <div class="hamburger">
                 <div class="line"></div>
