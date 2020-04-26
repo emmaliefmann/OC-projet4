@@ -1,4 +1,6 @@
 <?php
+
+namespace EmmaLiefmann\blog\model;
 require_once('model/manager.php');
 
 class CommentManager extends Manager

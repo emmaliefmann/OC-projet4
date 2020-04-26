@@ -16,14 +16,14 @@
             <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
                 <div>
                     <label for="author">Auteur</label><br/>
-                    <input type="text" id="author" name="author" />
+                    <input type="text" id="author" class="comment-input" name="author" />
                 </div>
                 <div>
                     <label for="comment">Commentaire</label><br/>
-                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                    <textarea name="comment" id="comment" class="comment-input"></textarea><br/><br/>
                 </div>
                 <div>
-                    <input type="submit" />
+                    <input type="submit" class="button" />
                 </div>
             </form>
            
@@ -31,9 +31,11 @@
             while ($comment = $comments->fetch())
             {
             ?>
-            <div>
+            <div class="comment">
                 <h4><?= htmlspecialchars($comment['author'])?> </h4>
+                <div class="comment-flag"><a title="Signaler ce commentaire"><i class="far fa-flag"></i></a></div> 
                 <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> </p>
+                    
             </div>
         <?php
         }

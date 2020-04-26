@@ -6,15 +6,15 @@ require_once('model/commentmanager.php');
 function listPosts()
 {
     
-    $postManager = new PostManager();
+    $postManager = new \EmmaLiefmann\blog\model\PostManager();
     $posts = $postManager->getPosts();
     require('view/frontend/indexview.php');
 }
 
 function post()
 {
-    $postManager = new PostManager();
-    $commentManager = new CommentManager();
+    $postManager = new \EmmaLiefmann\blog\model\PostManager();
+    $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
@@ -23,7 +23,7 @@ function post()
 
 function addComment($postId, $author, $comment)
 {
-    $commentManager = new CommentManager();
+    $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
     $affectedLines = $commentManager->addComments($postId, $author, $comment);
 
     if ($affectedLines === false) {
