@@ -2,6 +2,9 @@
     <main>
         <div class="single-post">
             <h2>
+            <?php
+                $post = $request->fetch();
+                ?>
                 <?= htmlspecialchars($post['title']) ?>
             </h2>
             <h3>

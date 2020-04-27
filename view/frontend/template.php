@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <a href="index.php">Home</a> 
+        <a href="index.php" class="logo">Home</a> 
         <nav>
             <div class="hamburger">
                 <div class="line"></div>
@@ -21,7 +21,7 @@
             <ul class="nav-links">
                 <li><a href="#">A propos</a></li>
                 <li><a href="#">Chapitres</a></li>
-                <li><a href="view/admin.php">Admin</a></li>
+                <li><a href="view/adminview.php">Admin</a></li>
             </ul>  
 		</nav>
     </header>

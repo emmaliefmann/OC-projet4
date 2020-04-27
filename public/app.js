@@ -4,23 +4,19 @@ const links = document.querySelectorAll('.nav-links li');
 const commentFlag = document.querySelectorAll('.comment-flag');
 
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-
+    navLinks.classList.toggle('nav-links.open');
+    console.log('mobile');
 });
 
-commentFlag[0].addEventListener('click', () => {
-    console.log("comment reported");
-    commentFlag[0].classList.toggle('comment-reported');
-    alert('Ce commentaire vient d\'être signalé');
-    });
     
-/*window.addEventListener("load", () => {
-    //this slows my page down so much it won't open??
-    let i=0;
-    while (i < commentFlag.length-1) {
+window.addEventListener("load", () => {
+    for (let i=0; i < commentFlag.length; i++) {
         commentFlag[i].addEventListener('click', () => {
         console.log("comment reported");
-        i++;
+        commentFlag[i].classList.toggle('comment-reported');
+        alert('Ce commentaire a été signalé');
         });
     }; 
-});*/
+
+    
+});

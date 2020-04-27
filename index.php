@@ -33,6 +33,10 @@ try {
                 throw new Exception('Aucun article trouvé.');
             }
         }
+
+        elseif($_GET['action'] === 'admin') {
+            //go to admin page 
+        }
     }
     else {
         listPosts();

@@ -4,22 +4,34 @@ require_once('model/manager.php');
 
 class PostManager extends Manager 
 {
+    protected function createQuery($sql, $parameters=null)
+    {
+        if($parameters)
+        {
+            $result=$this->dbConnect()->prepare($sql);
+            $result->execute($parameters);
+
+            return $result;
+        }
+
+        $result=$this->dbConnect()->query($sql);
+        return $result;
+    }
+    
     public function getPosts()
     {
-        $db = $this->dbConnect();
-        $posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date');
-
-        return $posts;
+        $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date';
+        return $this->createQuery($sql);
     }
+    
     public function getPost($postId)
     {
-        $db = $this->dbConnect();
-        $request = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?');
+        $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?';
         //$_GET['post] comes from URL on index page 
-        $request->execute(array($postId));
-        $post = $request->fetch();
+        //$request->execute(array($postId));
+        
 
-        return $post;
+        return $this->createQuery($sql, [$postId]);
     }
 
 }
