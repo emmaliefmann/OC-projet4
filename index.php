@@ -35,7 +35,8 @@ try {
         }
 
         elseif($_GET['action'] === 'admin') {
-            //go to admin page 
+            //if session active, access admin page, otherwise loginpage 
+            require('view/adminview.php');
         }
     }
     else {

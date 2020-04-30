@@ -12,6 +12,20 @@ class Manager
     {  
         $db = new \PDO(self::DB_HOST, self::DB_USER, self::DB_PASSWORD);
         return $db;
-        
+
+    }
+
+    protected function createQuery($sql, $parameters=null)
+    {
+        if($parameters)
+        {
+            $result=$this->dbConnect()->prepare($sql);
+            $result->execute($parameters);
+
+            return $result;
+        }
+
+        $result=$this->dbConnect()->query($sql);
+        return $result;
     }
 }

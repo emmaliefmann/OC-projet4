@@ -1,5 +1,7 @@
 <?php 
 
+//namespace here? 
+
 require_once('model/postmanager.php');
 require_once('model/commentmanager.php');
 
