@@ -38,7 +38,16 @@ try {
             //if session active, access admin page, otherwise loginpage 
             require('view/adminview.php');
         }
+
+        //elseif($_GET['action'] === 'login') {
+            //if (isset($_POST['username']) {
+                //run function to query database using username as parameter 
+                //get password as well? To compare 
+                //in controller/backend.php, but connection in adminmanager
+                //loginToAdmin($_POST['username']);
+            //}
     }
+
     else {
         listPosts();
     }

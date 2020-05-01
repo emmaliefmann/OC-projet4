@@ -11,7 +11,7 @@ class CommentManager extends Manager
 
         return $this->createQuery($sql, [$postId]);
     }
-
+    //change function 
     public function addComments($postId, $author, $comment)
     {
         $db = $this->dbConnect();

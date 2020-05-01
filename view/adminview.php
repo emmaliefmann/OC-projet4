@@ -13,11 +13,11 @@
 <body>
     <a href="index.php">Revenir à la page d'acceuil</a>
     <div class="admin-form">
-        <img src="..public/images/jean2.jpg" class="author-photo" alt="Photo de Jean" />
-        <form action="adminLogIn.php" method="post" class="login">
+        <img src="public/images/jean2.jpg" class="author-photo" alt="Photo de Jean" />
+        <form action="index.php?action=login&username=<?= //value from form ?>" method="post" class="login">
             <p>
-                <input type="text" name="username" /><br/>
-                <input type="password" name="password" /><br/>
+                <input type="text" name="username" class="form-input"/><br/>
+                <input type="password" name="password" class="form-input"/><br/><br/>
                 <input type="submit" value="valider" class="button"/>
             </p>
         </form>

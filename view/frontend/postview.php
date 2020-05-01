@@ -19,11 +19,11 @@
             <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
                 <div>
                     <label for="author">Auteur</label><br/>
-                    <input type="text" id="author" class="comment-input" name="author" />
+                    <input type="text" id="author" class="form-input" name="author" />
                 </div>
                 <div>
                     <label for="comment">Commentaire</label><br/>
-                    <textarea name="comment" id="comment" class="comment-input"></textarea><br/><br/>
+                    <textarea name="comment" id="comment" class="form-input"></textarea><br/><br/>
                 </div>
                 <div>
                     <input type="submit" class="button" />

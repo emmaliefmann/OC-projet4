@@ -137,17 +137,9 @@ footer {
     margin: 20px;
 }
 
-.submit-button {
-    padding: 7px;
-    border: none; 
-    cursor: pointer; 
-    margin-top: 15px;
-    background-color: lightblue;
-    font-size: 1em;
-}
 
 /*comment form*/
-.comment-input {
+.form-input {
     padding: 5px; 
     min-width: 60%;
 }
