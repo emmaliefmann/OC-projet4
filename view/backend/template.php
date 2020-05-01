@@ -19,15 +19,15 @@
                 <div class="line"></div>
             </div>
             <ul class="nav-links">
-                <li><a href="#">A propos</a></li>
-                <li><a href="#">Chapitres</a></li>
-                <li><a href="index.php?action=dashboard">Dashboard</a></li>
-                <li><a href="index.php?action=admin">Admin</a></li>
+                <li><a href="#">Creer</a></li>
+                <li><a href="#">Modifer</a></li>
+                <li><a href="">Mettre à jour</a></li>
+                <li><a href="">Supprimer</a></li>
             </ul>  
 		</nav>
     </header>
     <section class="title">
-        <h1>Billet Simple pour l'Alaska</h1>
+        <h1>Bienvenu Jean !</h1>
     </section>
         <?= $content ?>
     <footer>

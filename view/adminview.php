@@ -14,7 +14,7 @@
     <a href="index.php">Revenir à la page d'acceuil</a>
     <div class="admin-form">
         <img src="public/images/jean2.jpg" class="author-photo" alt="Photo de Jean" />
-        <form action="index.php?action=login&username=<?= //value from form ?>" method="post" class="login">
+        <form action="index.php?action=login" method="post" class="login">
             <p>
                 <input type="text" name="username" class="form-input"/><br/>
                 <input type="password" name="password" class="form-input"/><br/><br/>

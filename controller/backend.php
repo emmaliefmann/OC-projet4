@@ -2,19 +2,37 @@
 
 //namespace here
 
-require_once('model/adminmanager.php');
+require_once('model/dashboardmanager.php');
 
 
-    public function loginToAdmin($username)
+    function loginToAdmin($username)
     {
         $adminManager = new \EmmaLiefmann\blog\model\AdminManager();
         //how do I get the username entered in the form here? like this via index? 
         $loginAttempt = $adminManager->login($username);
+
         //if no result, error => wrong login
         //if there is a result, compare the passwords 
         //if a match, open dashboard
     }
+    //call frontend functions to avoid repitition? 
+    function recentPosts() {
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $posts = $dashboardManager->getPosts();
+        require('view/backend/dashboardview.php');
+    }
 
+    function editPost($id) {
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $request = $dashboardManager->getPost($_GET['id']);
+        require('view/backend/editview.php');
+
+    }
+
+    function deletePost($id) {
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $request = $dashboardManager->getPost($_GET['id']);
+    }
     //$adminManager = new AdminManager 
         //$
         //get user info via username, hashed password

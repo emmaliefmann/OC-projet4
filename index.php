@@ -1,5 +1,6 @@
 <?php 
-require('controller/frontend.php');
+require_once('controller/frontend.php');
+require_once('controller/backend.php');
 
 try {
     if (isset($_GET['action'])) {
@@ -34,11 +35,35 @@ try {
             }
         }
 
+        // -------------------- BACK OFFICE -------------------------
+
+
         elseif($_GET['action'] === 'admin') {
             //if session active, access admin page, otherwise loginpage 
             require('view/adminview.php');
         }
 
+        elseif($_GET['action'] === 'dashboard') {
+            recentPosts();
+        }
+
+        elseif($_GET['action'] === 'edit') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                editPost($_GET['id']);
+            }
+            else {
+
+                //throw new Exception('Aucun article trouvé.');
+            }
+        }
+        elseif($_GET['action'] === 'create') {
+            require('view/backend/createview.php');
+        }
+
+        elseif($_GET['action'] === 'create') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                deletePost($_GET['id']);
+        }
         //elseif($_GET['action'] === 'login') {
             //if (isset($_POST['username']) {
                 //run function to query database using username as parameter 
@@ -51,6 +76,7 @@ try {
     else {
         listPosts();
     }
+    
 }
 
 catch(Exception $e) {
