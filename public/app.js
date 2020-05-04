@@ -12,8 +12,7 @@ hamburger.addEventListener('click', () => {
 window.addEventListener("load", () => {
     for (let i=0; i < commentFlag.length; i++) {
         commentFlag[i].addEventListener('click', () => {
-        console.log("comment reported");
-        commentFlag[i].classList.toggle('comment-reported');
+        commentFlag[i].classList.add('comment-reported');
         alert('Ce commentaire a été signalé');
         });
     }; 

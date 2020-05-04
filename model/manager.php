@@ -2,6 +2,7 @@
 
 namespace EmmaLiefmann\blog\model;
 
+
 class Manager 
 {
     const DB_HOST = 'mysql:host=localhost;dbname=blog;charset=utf8';
@@ -28,4 +29,5 @@ class Manager
         $result=$this->dbConnect()->query($sql);
         return $result;
     }
+
 }

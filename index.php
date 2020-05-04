@@ -2,6 +2,7 @@
 require_once('controller/frontend.php');
 require_once('controller/backend.php');
 
+
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] === 'listPosts') {
@@ -36,6 +37,16 @@ try {
             }
         }
 
+        elseif($_GET['action'] === 'flagComment') {
+            if(isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+                flagComment($_GET['postId'], $_GET['commentId']);
+                echo 'is set';
+            }
+            else {
+                echo 'index.php not set';
+            }
+        }
+
         // -------------------- BACK OFFICE -------------------------
 
 
@@ -54,7 +65,7 @@ try {
             }
             else {
 
-                //throw new Exception('Aucun article trouvé.');
+                throw new Exception('Aucun article trouvé.');
             }
         }
 
@@ -62,6 +73,20 @@ try {
             require('view/backend/createview.php');
             }
 
+        elseif($_GET['action'] === 'deleteComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                deleteComment($_GET['id']);
+            }
+            else {
+                //throw new Exception('Aucun article trouvé.');
+                echo 'not set';
+            }
+
+        }
+
+        elseif($_GET['action'] === 'unflagComment') {
+            
+        }
         
         elseif($_GET['action'] === 'changePost') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
@@ -69,8 +94,7 @@ try {
                     modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']);
                 }
                 else {
-                    //throw new Exception('Tous les champs ne sont pas remplis.');
-                    echo 'index.php';
+                    throw new Exception('Tous les champs ne sont pas remplis.');
                 }
             }
             else {
@@ -88,6 +112,7 @@ try {
        
         elseif($_GET['action'] === 'delete') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
+                //Should this if/else be within the function 
                 if($_POST['delete'] === 'true') {
                     deletePost($_GET['id']);
                 }

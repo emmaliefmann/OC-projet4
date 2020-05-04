@@ -19,7 +19,15 @@ require_once('model/dashboardmanager.php');
     function recentPosts() {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->getPosts();
+        
+        $comments = $dashboardManager->getFlaggedComments();
         require('view/backend/dashboardview.php');
+    }
+
+    function deleteComment($id) {
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $posts = $dashboardManager->deleteComment($id);
+        header('location: index.php?action=dashboard');
     }
 
     function editPost($id) {
@@ -48,8 +56,7 @@ require_once('model/dashboardmanager.php');
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $affectedLines = $dashboardManager->modifyPost($newTitle, $newContent, $postId);
         if ($affectedLines === false) {
-            //throw new Exception('Impossible d\'modifier le post.');
-            echo 'backend.php affected lines false';
+            throw new Exception('Impossible d\'modifier le post.');
         }
         else {
             header('location: index.php?action=dashboard');
@@ -57,7 +64,9 @@ require_once('model/dashboardmanager.php');
     }
 
     function deletePost($postId) {
+        
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        
         $request = $dashboardManager->deletePost($postId);
         header('location: index.php?action=dashboard');
     }

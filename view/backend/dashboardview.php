@@ -15,6 +15,22 @@
             }
             ?>
         </ul>
+        <h3>Commentaires signalés</h3>
+        <ul>
+        <?php
+        while($comment = $comments->fetch())
+        {
+        ?>
+        <li>
+        <strong><?= htmlspecialchars($comment['author'])?> - </strong>
+        <?= htmlspecialchars($comment['comment'])?>
+        <button><a href="index.php?action=deleteComment&id=<?=$comment['id']?>">delete</a></button>
+        <button><a href="index.php?action=unflaggComment&id<?=$comment['id']?>">accept</a></button>
+        </li>
+        <?php
+        }
+        ?>
+        </ul>
         <button><a href="index.php?action=create">Ecrire nouvelle article</a></button>
     </main>
 <?php $content = ob_get_clean(); ?>

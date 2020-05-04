@@ -26,6 +26,11 @@ class DashboardManager extends Manager
         return $this->createQuery($sql, [$postId]);
     }
 
+    function deleteComment($id)
+    {
+        $sql = 'DELETE FROM `comments` WHERE `id` = ?';
+        return $this->createQuery($sql, array($id));
+    }
     
     function addPost($newPostTitle, $newPostContent)
     {
@@ -42,6 +47,12 @@ class DashboardManager extends Manager
         $affectedLines = $modifiedPost->execute(array($newTitle, $newContent, $postId));
         return $affectedLines;
         
+    }
+    
+    function getFlaggedComments()
+    {
+        $sql = 'SELECT * FROM `comments` WHERE `flagged`=1';
+        return $this->createQuery($sql);
     }
 
 }

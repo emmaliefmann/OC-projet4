@@ -3,6 +3,7 @@
 namespace EmmaLiefmann\blog\model;
 require_once('model/manager.php');
 
+
 class CommentManager extends Manager
 {
     public function getComments($postId)
@@ -20,5 +21,17 @@ class CommentManager extends Manager
 
         return $affectedLines;
     }
+
+    public function flagComment($commentId)
+    {
+        $db = $this->dbConnect();
     
+        $flag = $db->prepare('UPDATE `comments` SET `flagged`= 1 WHERE `id`= ?');
+        $flaggedComment = $flag->execute(array($commentId));
+    }
+    
+    public function getFlaggedComments()
+    {
+        $sql = 'SELECT * FROM `comments` WHERE `flagged`=1';
+    }
 }

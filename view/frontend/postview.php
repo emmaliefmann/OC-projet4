@@ -36,7 +36,7 @@
             ?>
             <div class="comment">
                 <h4><?= htmlspecialchars($comment['author'])?> </h4>
-                <div class="comment-flag"><a title="Signaler ce commentaire"><i class="far fa-flag"></i></a></div> 
+                <div class="comment-flag"><a href="index.php?action=flagComment&postId=<?=$post['id']?>&commentId=<?=$comment['id']?>" title="Signaler ce commentaire"><i class="far fa-flag"></i></a></div>
                 <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> </p>
                     
             </div>

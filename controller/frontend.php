@@ -35,3 +35,11 @@ function addComment($postId, $author, $comment)
         header('location: index.php?action=post&id=' . $postId);
     }
 }
+
+function flagComment($postId, $commentId)
+{
+    $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
+    $flaggedComment = $commentManager->flagComment($commentId);
+    var_dump($commentId);
+    header('location: index.php?action=post&id='. $postId);
+}
