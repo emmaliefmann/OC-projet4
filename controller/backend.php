@@ -33,6 +33,23 @@ require_once('model/dashboardmanager.php');
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $request = $dashboardManager->getPost($_GET['id']);
     }
+
+    function addNewArticle($newPostTitle, $newPostContent) {
+       
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $affectedLines = $dashboardManager->addPost($newPostTitle, $newPostContent);
+        
+        
+        
+        if ($affectedLines === false) {
+            //throw new Exception('Impossible d\'ajouter le commentaire.');
+            echo '$affectedLines is false';
+            var_dump($newPostTitle, $newPostContent);
+        }
+        else {
+            header('location: index.php?action=dashboard');
+        }
+    }
     //$adminManager = new AdminManager 
         //$
         //get user info via username, hashed password

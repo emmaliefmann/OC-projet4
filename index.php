@@ -56,13 +56,20 @@ try {
                 //throw new Exception('Aucun article trouvé.');
             }
         }
-        elseif($_GET['action'] === 'create') {
-            require('view/backend/createview.php');
-        }
 
         elseif($_GET['action'] === 'create') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                deletePost($_GET['id']);
+            require('view/backend/createview.php');
+            }
+
+
+        elseif($_GET['action'] === 'newArticle') {
+            //get $title and content
+            if (!empty($_POST['title']) && !empty($_POST['post'])) {
+                addNewArticle($_POST['title'], $_POST['post']);
+            }
+            else {
+                throw new Exception('Tous les champs ne sont pas remplis.');
+            }
         }
         //elseif($_GET['action'] === 'login') {
             //if (isset($_POST['username']) {

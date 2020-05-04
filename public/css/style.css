@@ -161,6 +161,13 @@ footer {
 .comment-reported {
     color: red;
 }
+
+/*creator editor*/
+#default {
+    width: 90%;
+    min-height: 200px;
+    visibility: visible;
+}
 @media screen and (max-width: 768px) {
     /*hamburder menu*/
     .line {

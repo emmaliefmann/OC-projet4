@@ -11,7 +11,6 @@
         <h2>Les derniers chapitres</h2>
         <div class="latest-posts">
           <?php
-           //as long as there is data, keep fetching it
            while ($data = $posts->fetch())
            {
             ?>
@@ -21,7 +20,7 @@
                </h3>
                <h4>Publié <?= htmlspecialchars($data['creation_date_fr'])?> </h4>
                <p>
-                   <?= nl2br(htmlspecialchars($data['content']));?>
+                   <?= $data['content'];?>
                
                <br/>
                <a href="index.php?action=post&id=<?= $data['id'] ?>">Comments</a>

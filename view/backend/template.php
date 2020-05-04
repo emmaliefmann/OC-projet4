@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" value="Emma Liefmann" >
+    <script src="https://cdn.tiny.cloud/1/mbjc1sklutn7ismdr9tn1qri2o08nqwlqb0jb80o3yrados5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    
     <link href="public/css/style.css" rel="stylesheet"> 
     <title>Billet Simple pour l'Alaska</title>
+    <script src="https://cdn.tiny.cloud/1/mbjc1sklutn7ismdr9tn1qri2o08nqwlqb0jb80o3yrados5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+   tinymce.init({
+      selector: 'textarea#post',
+      content_css : '/public/css/style.css'
+   });
+   </script>
 </head>
 <body>
     <header>
