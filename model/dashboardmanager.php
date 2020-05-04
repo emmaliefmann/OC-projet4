@@ -21,10 +21,9 @@ class DashboardManager extends Manager
 
     function deletePost($postId)
     {
-        //get row with id 
-        //return it 
-        $db = $this->dbConnect();
-        $postToDelete = $db->prepare('DELETE FROM `posts` WHERE `id` = ?');
+        
+        $sql = 'DELETE FROM `posts` WHERE `id` = ?';
+        return $this->createQuery($sql, [$postId]);
     }
 
     
@@ -35,4 +34,14 @@ class DashboardManager extends Manager
         $affectedLines = $newPost->execute(array($newPostTitle, $newPostContent));
         return $affectedLines;
     }
+
+    function modifyPost($newTitle, $newContent, $postId)
+    {
+        $db = $this->dbConnect();
+        $modifiedPost = $db->prepare('UPDATE posts SET `title`= ?, `content` = ? WHERE `id` = ? ' );
+        $affectedLines = $modifiedPost->execute(array($newTitle, $newContent, $postId));
+        return $affectedLines;
+        
+    }
+
 }

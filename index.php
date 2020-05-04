@@ -7,16 +7,17 @@ try {
         if ($_GET['action'] === 'listPosts') {
             listPosts();
         }
+
         elseif ($_GET['action'] === 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 post();
             }
             
             else {
-                throw new Exception('Aucun article trouvé.');
-                
+                throw new Exception('Aucun article trouvé.'); 
             }
         }
+
         elseif($_GET['action'] === 'addComment') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
                 //If neither field is empty, execute function in controller
@@ -61,7 +62,46 @@ try {
             require('view/backend/createview.php');
             }
 
-
+        
+        elseif($_GET['action'] === 'changePost') {
+            if(isset($_GET['id']) && $_GET['id'] > 0) {
+                if (!empty($_POST['title']) && !empty($_POST['modifiedPost'])) {
+                    modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']);
+                }
+                else {
+                    //throw new Exception('Tous les champs ne sont pas remplis.');
+                    echo 'index.php';
+                }
+            }
+            else {
+                throw new Exception('Article pas trouvé');
+            }
+        }
+        elseif($_GET['action'] === 'deletePost') {
+            if(isset($_GET['id']) && $_GET['id'] > 0) {
+                require('view/backend/deleteview.php');
+            }
+            else {
+                throw new Exception ('page non trouvé');
+            }
+        }
+       
+        elseif($_GET['action'] === 'delete') {
+            if(isset($_GET['id']) && $_GET['id'] > 0) {
+                if($_POST['delete'] === 'true') {
+                    deletePost($_GET['id']);
+                }
+                else {
+                    header('location: index.php?action=dashboard');
+                }
+            }
+            else {
+                echo 'post not found';
+            }                
+            
+        }
+    
+    
         elseif($_GET['action'] === 'newArticle') {
             //get $title and content
             if (!empty($_POST['title']) && !empty($_POST['post'])) {
@@ -71,15 +111,7 @@ try {
                 throw new Exception('Tous les champs ne sont pas remplis.');
             }
         }
-        //elseif($_GET['action'] === 'login') {
-            //if (isset($_POST['username']) {
-                //run function to query database using username as parameter 
-                //get password as well? To compare 
-                //in controller/backend.php, but connection in adminmanager
-                //loginToAdmin($_POST['username']);
-            //}
     }
-
     else {
         listPosts();
     }
@@ -90,3 +122,11 @@ catch(Exception $e) {
     $errorMessage = $e->getMessage();
     require('view/errorview.php');
 }
+
+//elseif($_GET['action'] === 'login') {
+            //if (isset($_POST['username']) {
+                //run function to query database using username as parameter 
+                //get password as well? To compare 
+                //in controller/backend.php, but connection in adminmanager
+                //loginToAdmin($_POST['username']);
+            //}

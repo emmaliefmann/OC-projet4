@@ -9,7 +9,7 @@
             <li>
             <?= htmlspecialchars($data['title']); ?>
             <button><a href="index.php?action=edit&id=<?= $data['id'] ?>">Edit</a></button>
-
+            <button><a href="index.php?action=deletePost&id=<?= $data['id'] ?>">Suprimmer</a></button>
             </li>
             <?php
             }

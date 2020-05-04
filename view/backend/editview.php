@@ -1,22 +1,18 @@
 <?php ob_start(); ?>
     <main>
     <h2>Modifier votre article</h2>
-    <div class="single-post">
-            <h2>
-            <?php
-                $post = $request->fetch();
-                ?>
-                <?= htmlspecialchars($post['title']) ?>
+    <div class="single-post">  
+        <?php
+            $post = $request->fetch();
+            ?>
+        <form action="index.php?action=changePost&amp;id=<?= $post['id'] ?>" method="post">
+            <input type="text" name="title" value="<?=htmlspecialchars($post['title']); ?>" />
             </h2>
-            <h3>
-                Publié : <?= htmlspecialchars($post['creation_date_fr']);?>
-            </h3>
-            <p>
-                <?=nl2br(htmlspecialchars($post['content']));?>
-            </p>
-        </div>
-        <button>MODIFIER</button>
-        <button> <a href="index.php?action=deletePost&amp;id=<?= $post['id'] ?>"></a> SUPPRIMER</button>
+            <textarea name="modifiedPost" id="post">
+            <?= $post['content']; ?>
+            </textarea>
+            <input type="submit" />
+        </form>
     </main>
 <?php $content = ob_get_clean(); ?>
 

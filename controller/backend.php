@@ -29,27 +29,39 @@ require_once('model/dashboardmanager.php');
 
     }
 
-    function deletePost($id) {
-        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
-        $request = $dashboardManager->getPost($_GET['id']);
-    }
-
     function addNewArticle($newPostTitle, $newPostContent) {
        
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $affectedLines = $dashboardManager->addPost($newPostTitle, $newPostContent);
         
-        
-        
         if ($affectedLines === false) {
-            //throw new Exception('Impossible d\'ajouter le commentaire.');
-            echo '$affectedLines is false';
-            var_dump($newPostTitle, $newPostContent);
+            throw new Exception('Impossible d\'ajouter le post.');
+           
         }
         else {
             header('location: index.php?action=dashboard');
         }
     }
+
+    function modifyPost($newTitle, $newContent, $postId) {
+       
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $affectedLines = $dashboardManager->modifyPost($newTitle, $newContent, $postId);
+        if ($affectedLines === false) {
+            //throw new Exception('Impossible d\'modifier le post.');
+            echo 'backend.php affected lines false';
+        }
+        else {
+            header('location: index.php?action=dashboard');
+        }
+    }
+
+    function deletePost($postId) {
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $request = $dashboardManager->deletePost($postId);
+        header('location: index.php?action=dashboard');
+    }
+
     //$adminManager = new AdminManager 
         //$
         //get user info via username, hashed password

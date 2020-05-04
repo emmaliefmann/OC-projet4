@@ -28,10 +28,8 @@
                 <div class="line"></div>
             </div>
             <ul class="nav-links">
-                <li><a href="#">Creer</a></li>
-                <li><a href="#">Modifer</a></li>
-                <li><a href="">Mettre à jour</a></li>
-                <li><a href="">Supprimer</a></li>
+                <li><a href="index.php?action=create">Creer post</a></li>
+                <li><a href="index.php?action=dashboard">Dashboard</a></li>
             </ul>  
 		</nav>
     </header>

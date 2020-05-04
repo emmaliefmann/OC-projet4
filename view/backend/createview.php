@@ -12,7 +12,7 @@
       <label for="title">Titre</label>
       <textarea id="post" name="post">test</textarea>
 
-      <input type="submit" />
+      <input type="submit" value="Enregistrer"/>
    </form>
 <?php $content = ob_get_clean(); ?>
 
