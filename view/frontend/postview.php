@@ -32,11 +32,22 @@
            
            <?php
             while ($comment = $comments->fetch())
+            //create variable for flagged comments 
             {
+                
             ?>
-            <div class="comment">
+            <div class="comment" id="comments">
                 <h4><?= htmlspecialchars($comment['author'])?> </h4>
-                <div class="comment-flag"><a href="index.php?action=flagComment&postId=<?=$post['id']?>&commentId=<?=$comment['id']?>" title="Signaler ce commentaire"><i class="far fa-flag"></i></a></div>
+                <div>
+                    <a href="index.php?action=flagComment&postId=<?=$post['id']?>&commentId=<?=$comment['id']?>" title="Signaler ce commentaire">
+                        <i class="far fa-flag <?php if($comment['flagged'] === '1') {
+                    echo'comment-reported';
+                } else {
+                    echo 'comment-flag';
+                }
+                ?>"></i>
+                    </a>
+                </div>
                 <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> </p>
                     
             </div>

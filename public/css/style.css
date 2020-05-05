@@ -159,7 +159,7 @@ footer {
 }
 
 .comment-reported {
-    color: red;
+    color: red !important;
 }
 
 /*creator editor*/

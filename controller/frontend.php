@@ -32,7 +32,7 @@ function addComment($postId, $author, $comment)
         throw new Exception('Impossible d\'ajouter le commentaire.');
     }
     else {
-        header('location: index.php?action=post&id=' . $postId);
+        header('location: index.php?action=post&id=' . $postId .'#comments');
     }
 }
 
@@ -40,5 +40,5 @@ function flagComment($postId, $commentId)
 {
     $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
     $flaggedComment = $commentManager->flagComment($commentId);
-    header('location: index.php?action=post&id='. $postId);
+    header('location: index.php?action=post&id='. $postId . '#comments');
 }

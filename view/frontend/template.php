@@ -21,7 +21,6 @@
             <ul class="nav-links">
                 <li><a href="#">A propos</a></li>
                 <li><a href="#">Chapitres</a></li>
-                <li><a href="index.php?action=dashboard">Dashboard</a></li>
                 <li><a href="index.php?action=admin">Admin</a></li>
             </ul>  
 		</nav>

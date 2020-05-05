@@ -1,6 +1,9 @@
 <?php 
+
+
 require_once('controller/frontend.php');
 require_once('controller/backend.php');
+session_start();
 
 
 try {
@@ -48,18 +51,26 @@ try {
 
         // -------------------- BACK OFFICE -------------------------
 
+        //these functions should only be accessible if session is active, quick way to add a bracket round them all? 
 
         elseif($_GET['action'] === 'admin') {
-            //if session active, access admin page, otherwise loginpage 
+            if ($_SESSION['active'] === 'yes') {
+                header('location: index.php?action=dashboard');
+            } 
             require('view/backend/adminview.php');
         }
 
         elseif($_GET['action'] === 'login') {
             loginToAdmin($_POST['username'], $_POST['password']);
         } 
-
         elseif($_GET['action'] === 'dashboard') {
-            recentPosts();
+            if($_SESSION['active'] === 'yes') {
+                recentPosts();
+            }
+        //what if nul? weird error
+            else {
+                require('view/backend/adminview.php');
+            }
         }
 
         elseif($_GET['action'] === 'edit') {
