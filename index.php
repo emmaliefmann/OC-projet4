@@ -40,7 +40,6 @@ try {
         elseif($_GET['action'] === 'flagComment') {
             if(isset($_GET['commentId']) && $_GET['commentId'] > 0) {
                 flagComment($_GET['postId'], $_GET['commentId']);
-                echo 'is set';
             }
             else {
                 echo 'index.php not set';
@@ -52,8 +51,12 @@ try {
 
         elseif($_GET['action'] === 'admin') {
             //if session active, access admin page, otherwise loginpage 
-            require('view/adminview.php');
+            require('view/backend/adminview.php');
         }
+
+        elseif($_GET['action'] === 'login') {
+            loginToAdmin($_POST['username'], $_POST['password']);
+        } 
 
         elseif($_GET['action'] === 'dashboard') {
             recentPosts();
@@ -85,7 +88,12 @@ try {
         }
 
         elseif($_GET['action'] === 'unflagComment') {
-            
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                unflagComment($_GET['id']);
+            }
+            else {
+                throw new Exception ('Commentaire non trouvé.');
+            }
         }
         
         elseif($_GET['action'] === 'changePost') {

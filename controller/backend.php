@@ -3,20 +3,37 @@
 //namespace here
 
 require_once('model/dashboardmanager.php');
+require_once('model/adminmanager.php');
 
 
-    function loginToAdmin($username)
+    function loginToAdmin($username, $password)
     {
         $adminManager = new \EmmaLiefmann\blog\model\AdminManager();
-        //how do I get the username entered in the form here? like this via index? 
         $loginAttempt = $adminManager->login($username);
-
-        //if no result, error => wrong login
-        //if there is a result, compare the passwords 
-        //if a match, open dashboard
+        $dbResult = $loginAttempt->fetch();
+        if ($dbResult) {
+            $userInput = $password;
+            $dbPassword = $dbResult['password'];
+            $check = password_verify($userInput, $dbPassword);
+            if ($check) {
+                echo 'right password';
+                //start session in index.php
+                //definir variable e.g. $session_id 
+                
+            }
+            else {
+                echo password_hash('password', PASSWORD_DEFAULT);
+            }
+        }
+        
+        else {
+            echo 'incorrect login';
+        }
     }
+
     //call frontend functions to avoid repitition? 
-    function recentPosts() {
+    function recentPosts() 
+    {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->getPosts();
         
@@ -24,13 +41,21 @@ require_once('model/dashboardmanager.php');
         require('view/backend/dashboardview.php');
     }
 
-    function deleteComment($id) {
+    function deleteComment($id) 
+    {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->deleteComment($id);
         header('location: index.php?action=dashboard');
     }
+    function unflagComment($id)
+    {
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $posts = $dashboardManager->unflagComment($id);
+        header('location: index.php?action=dashboard');
+    }
 
-    function editPost($id) {
+    function editPost($id) 
+    {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $request = $dashboardManager->getPost($_GET['id']);
         require('view/backend/editview.php');
@@ -44,15 +69,14 @@ require_once('model/dashboardmanager.php');
         
         if ($affectedLines === false) {
             throw new Exception('Impossible d\'ajouter le post.');
-           
         }
         else {
             header('location: index.php?action=dashboard');
         }
     }
 
-    function modifyPost($newTitle, $newContent, $postId) {
-       
+    function modifyPost($newTitle, $newContent, $postId) 
+    {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $affectedLines = $dashboardManager->modifyPost($newTitle, $newContent, $postId);
         if ($affectedLines === false) {
@@ -63,20 +87,10 @@ require_once('model/dashboardmanager.php');
         }
     }
 
-    function deletePost($postId) {
-        
+    function deletePost($postId) 
+    {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         
         $request = $dashboardManager->deletePost($postId);
         header('location: index.php?action=dashboard');
     }
-
-    //$adminManager = new AdminManager 
-        //$
-        //get user info via username, hashed password
-
-        //compare hashed password with password in db
-
-        //if the same, show dashboard, and $_session (look at lesson OC e.g. $_session_name = ) 
-        //?? index.php start session, come back to later
-        //if not back to login page

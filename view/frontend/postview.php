@@ -11,7 +11,7 @@
                 Publié : <?= htmlspecialchars($post['creation_date_fr']);?>
             </h3>
             <p>
-                <?=nl2br(htmlspecialchars($post['content']));?>
+                <?=$post['content'];?>
             </p>
         </div>
         <div class="comments-container">

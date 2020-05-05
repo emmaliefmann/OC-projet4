@@ -25,7 +25,7 @@
         <strong><?= htmlspecialchars($comment['author'])?> - </strong>
         <?= htmlspecialchars($comment['comment'])?>
         <button><a href="index.php?action=deleteComment&id=<?=$comment['id']?>">delete</a></button>
-        <button><a href="index.php?action=unflaggComment&id<?=$comment['id']?>">accept</a></button>
+        <button><a href="index.php?action=unflagComment&id=<?=$comment['id']?>">accept</a></button>
         </li>
         <?php
         }

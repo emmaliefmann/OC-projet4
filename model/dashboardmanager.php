@@ -15,7 +15,6 @@ class DashboardManager extends Manager
     function getPost($postId)
     {
         $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?';
-        
         return $this->createQuery($sql, [$postId]);
     }
 
@@ -34,18 +33,14 @@ class DashboardManager extends Manager
     
     function addPost($newPostTitle, $newPostContent)
     {
-        $db = $this->dbConnect();
-        $newPost = $db->prepare('INSERT INTO posts(`title`, `content`, `creation_date`) VALUES(?, ?, NOW() )');
-        $affectedLines = $newPost->execute(array($newPostTitle, $newPostContent));
-        return $affectedLines;
+        $sql = 'INSERT INTO posts(`title`, `content`, `creation_date`) VALUES(?, ?, NOW() )';
+        return $this->createQuery($sql, array($newPostTitle, $newPostContent));
     }
 
     function modifyPost($newTitle, $newContent, $postId)
     {
-        $db = $this->dbConnect();
-        $modifiedPost = $db->prepare('UPDATE posts SET `title`= ?, `content` = ? WHERE `id` = ? ' );
-        $affectedLines = $modifiedPost->execute(array($newTitle, $newContent, $postId));
-        return $affectedLines;
+        $sql = 'UPDATE posts SET `title`= ?, `content` = ? WHERE `id` = ? ';
+        return $this->createQuery($sql, array($newTitle, $newContent, $postId));
         
     }
     
@@ -53,6 +48,12 @@ class DashboardManager extends Manager
     {
         $sql = 'SELECT * FROM `comments` WHERE `flagged`=1';
         return $this->createQuery($sql);
+    }
+
+    function unflagComment($id)
+    {
+        $sql = 'UPDATE `comments` SET `flagged`= 0 WHERE `id` = ?';
+        return $this->createQuery($sql, [$id]);
     }
 
 }
