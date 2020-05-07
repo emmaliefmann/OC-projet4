@@ -54,7 +54,7 @@ try {
         //these functions should only be accessible if session is active, quick way to add a bracket round them all? 
 
         elseif($_GET['action'] === 'admin') {
-            if ($_SESSION['active'] === 'yes') {
+            if ($_SESSION['active']) {
                 header('location: index.php?action=dashboard');
             } 
             require('view/backend/adminview.php');
@@ -67,7 +67,7 @@ try {
             if($_SESSION['active'] === 'yes') {
                 recentPosts();
             }
-        //what if nul? weird error
+        //what if nul? weird error appears on login page
             else {
                 require('view/backend/adminview.php');
             }

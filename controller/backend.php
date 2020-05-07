@@ -17,6 +17,7 @@ require_once('model/adminmanager.php');
             $check = password_verify($userInput, $dbPassword);
             if ($check) {
                 $_SESSION['active'] = 'yes';
+                $_SESION['name'] = $username ;
                 header('location: index.php?action=dashboard');
                 //start session in index.php
                 //definir variable e.g. $session_id 

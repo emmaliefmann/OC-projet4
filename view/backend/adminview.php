@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" value="Emma Liefmann" >
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <!--CSS doesn't work on this page-->
-    <link href="public/css/style.css" rel="stylesheet"> 
+
+    <link href="public/css/backendstyle.css" rel="stylesheet"> 
     
     <title>Billet Simple pour l'Alaska</title>
 </head>

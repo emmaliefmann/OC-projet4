@@ -18,13 +18,12 @@
                <h3>
                    <?= htmlspecialchars($data['title']); ?>
                </h3>
-               <h4>Publié <?= htmlspecialchars($data['creation_date_fr'])?> </h4>
-               <p>
-                   <?= $data['content'];?>
+               <h4>Publié <em><?= htmlspecialchars($data['creation_date_fr'])?></em> </h4>
+               <p><?= wordLimiter($data['content']); ?> </p>
                
                <br/>
-               <a href="index.php?action=post&id=<?= $data['id'] ?>">Comments</a>
-               </p>
+               <a href="index.php?action=post&id=<?= $data['id'] ?>">Lire ce chapitre</a>
+               
            </div>
            <?php 
            }
