@@ -4,33 +4,50 @@
 
 require_once('model/dashboardmanager.php');
 require_once('model/adminmanager.php');
+function checkLogin($function) 
 
+{
+    if (isset($_SESSION['active']) &&$_SESSION['active'] === 'yes') {
+        $function;
+    }
+    else {
+        header('location: index.php?action=admin');
+    }
+}
 
-    function loginToAdmin($username, $password)
-    {
-        $adminManager = new \EmmaLiefmann\blog\model\AdminManager();
-        $loginAttempt = $adminManager->login($username);
-        $dbResult = $loginAttempt->fetch();
-        if ($dbResult) {
-            $userInput = $password;
-            $dbPassword = $dbResult['password'];
-            $check = password_verify($userInput, $dbPassword);
-            if ($check) {
-                $_SESSION['active'] = 'yes';
-                $_SESION['name'] = $username ;
-                header('location: index.php?action=dashboard');
-                //start session in index.php
-                //definir variable e.g. $session_id 
-                
-            }
-            else {
-                echo password_hash('password', PASSWORD_DEFAULT);
-            }
+function loginToAdmin($username, $password)
+{
+    $adminManager = new \EmmaLiefmann\blog\model\AdminManager();
+    $loginAttempt = $adminManager->login($username);
+    $dbResult = $loginAttempt->fetch();
+    if ($dbResult) {
+        $userInput = $password;
+        $dbPassword = $dbResult['password'];
+        $check = password_verify($userInput, $dbPassword);
+        if ($check) {
+            $_SESSION['active'] = 'yes';
+            $_SESION['name'] = $username ;
+            header('location: index.php?action=dashboard');
         }
-        
         else {
-            echo 'incorrect login';
+            echo password_hash('password', PASSWORD_DEFAULT);
         }
+    }
+    
+    else {
+        echo 'incorrect login';
+    }
+}
+
+    function create()
+    {
+        require('view/backend/createview.php');
+    }
+
+    function dashboard() 
+    {
+        recentPosts();
+        require('view/backend/dashboardview.php');
     }
 
     //call frontend functions to avoid repitition? 
@@ -61,7 +78,6 @@ require_once('model/adminmanager.php');
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $request = $dashboardManager->getPost($_GET['id']);
         require('view/backend/editview.php');
-
     }
 
     function addNewArticle($newPostTitle, $newPostContent) {
@@ -87,6 +103,10 @@ require_once('model/adminmanager.php');
         else {
             header('location: index.php?action=dashboard');
         }
+    }
+
+    function deleteCheck() {
+        require('view/backend/deleteview.php');
     }
 
     function deletePost($postId) 

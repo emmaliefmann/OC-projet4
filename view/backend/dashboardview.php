@@ -10,7 +10,7 @@
                 <div class="dashboard-article">
                     <li><?= htmlspecialchars($data['title']); ?></li>
                     <div>
-                        <button><a href="index.php?action=edit&id=<?= $data['id'] ?>">Edit</a></button>
+                        <button><a href="index.php?action=editPost&id=<?= $data['id'] ?>">Edit</a></button>
                         <button><a href="index.php?action=deletePost&id=<?= $data['id'] ?>">Suprimmer</a></button>
                     </div>
                 </div>

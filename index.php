@@ -54,7 +54,7 @@ try {
         //these functions should only be accessible if session is active, quick way to add a bracket round them all? 
 
         elseif($_GET['action'] === 'admin') {
-            if ($_SESSION['active']) {
+            if (isset($_SESSION['active']) && $_SESSION['active'] === 'yes') {
                 header('location: index.php?action=dashboard');
             } 
             require('view/backend/adminview.php');
@@ -63,33 +63,29 @@ try {
         elseif($_GET['action'] === 'login') {
             loginToAdmin($_POST['username'], $_POST['password']);
         } 
+        
         elseif($_GET['action'] === 'dashboard') {
-            if($_SESSION['active'] === 'yes') {
-                recentPosts();
-            }
-        //what if nul? weird error appears on login page
-            else {
-                require('view/backend/adminview.php');
-            }
+           checkLogin($_GET['action']());
         }
 
-        elseif($_GET['action'] === 'edit') {
+        elseif($_GET['action'] === 'editPost') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                editPost($_GET['id']);
+                checkLogin($_GET['action']($_GET['id']));
             }
             else {
-
                 throw new Exception('Aucun article trouvé.');
             }
         }
 
         elseif($_GET['action'] === 'create') {
-            require('view/backend/createview.php');
+            checkLogin($_GET['action']());
             }
+
+
 
         elseif($_GET['action'] === 'deleteComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                deleteComment($_GET['id']);
+                checkLogin($_GET['action']($_GET['id']));
             }
             else {
                 //throw new Exception('Aucun article trouvé.');
@@ -100,7 +96,7 @@ try {
 
         elseif($_GET['action'] === 'unflagComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                unflagComment($_GET['id']);
+                checkLogin($_GET['action']($_GET['id']));
             }
             else {
                 throw new Exception ('Commentaire non trouvé.');
@@ -110,7 +106,7 @@ try {
         elseif($_GET['action'] === 'changePost') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['title']) && !empty($_POST['modifiedPost'])) {
-                    modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']);
+                    checkLogin(modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']));
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis.');
@@ -122,7 +118,7 @@ try {
         }
         elseif($_GET['action'] === 'deletePost') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
-                require('view/backend/deleteview.php');
+                checkLogin(deleteCheck());
             }
             else {
                 throw new Exception ('page non trouvé');
@@ -133,7 +129,7 @@ try {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
                 //Should this if/else be within the function 
                 if($_POST['delete'] === 'true') {
-                    deletePost($_GET['id']);
+                    checkLogin( deletePost($_GET['id']));
                 }
                 else {
                     header('location: index.php?action=dashboard');
@@ -145,11 +141,10 @@ try {
             
         }
     
-    
         elseif($_GET['action'] === 'newArticle') {
             //get $title and content
             if (!empty($_POST['title']) && !empty($_POST['post'])) {
-                addNewArticle($_POST['title'], $_POST['post']);
+                checkLogin(addNewArticle($_POST['title'], $_POST['post']));
             }
             else {
                 throw new Exception('Tous les champs ne sont pas remplis.');
@@ -166,11 +161,3 @@ catch(Exception $e) {
     $errorMessage = $e->getMessage();
     require('view/errorview.php');
 }
-
-//elseif($_GET['action'] === 'login') {
-            //if (isset($_POST['username']) {
-                //run function to query database using username as parameter 
-                //get password as well? To compare 
-                //in controller/backend.php, but connection in adminmanager
-                //loginToAdmin($_POST['username']);
-            //}
