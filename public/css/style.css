@@ -148,6 +148,10 @@ footer {
     cursor: pointer;
 }
 
+.comment-reported {
+    color: red;
+}
+
 /*creator editor*/
 #default {
     width: 90%;

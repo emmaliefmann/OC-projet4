@@ -26,7 +26,7 @@
                     <textarea name="comment" id="comment" class="form-input"></textarea><br/><br/>
                 </div>
                 <div>
-                    <input type="submit" class="button" />
+                    <input type="submit" class="button" value="Laisser commentaire"/>
                 </div>
             </form>
            

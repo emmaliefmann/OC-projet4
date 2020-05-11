@@ -11,7 +11,7 @@
             <textarea name="modifiedPost" id="post">
             <?= $post['content']; ?>
             </textarea>
-            <input type="submit" />
+            <input class="button" type="submit" value="Enregistrer"/>
         </form>
     </main>
 <?php $content = ob_get_clean(); ?>

@@ -112,9 +112,8 @@ footer {
     margin: 20px;
 }
 
-button {
+button, .button {
     padding: 6px;
-
     border: none; 
     background-color: lightblue;
     cursor: pointer;
@@ -126,6 +125,11 @@ button {
 button a {
     text-decoration: none;
     color: black;
+}
+
+.centered-div {
+    text-align: center;
+    
 }
 
 /*creator editor*/

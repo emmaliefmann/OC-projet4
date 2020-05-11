@@ -11,7 +11,7 @@
                     <li><?= htmlspecialchars($data['title']); ?></li>
                     <div>
                         <button><a href="index.php?action=editPost&id=<?= $data['id'] ?>">Edit</a></button>
-                        <button><a href="index.php?action=deletePost&id=<?= $data['id'] ?>">Suprimmer</a></button>
+                        <button><a href="index.php?action=deletePost&id=<?= $data['id'] ?>">Supprimer</a></button>
                     </div>
                 </div>
                 <?php

@@ -22,6 +22,10 @@ try {
             }
         }
 
+        elseif($_GET['action'] === 'chapters') {
+            listPostsAgain();
+        }
+
         elseif($_GET['action'] === 'addComment') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
                 //If neither field is empty, execute function in controller
@@ -51,8 +55,6 @@ try {
 
         // -------------------- BACK OFFICE -------------------------
 
-        //these functions should only be accessible if session is active, quick way to add a bracket round them all? 
-
         elseif($_GET['action'] === 'admin') {
             if (isset($_SESSION['active']) && $_SESSION['active'] === 'yes') {
                 header('location: index.php?action=dashboard');
@@ -63,7 +65,7 @@ try {
         elseif($_GET['action'] === 'login') {
             loginToAdmin($_POST['username'], $_POST['password']);
         } 
-        
+
         elseif($_GET['action'] === 'dashboard') {
            checkLogin($_GET['action']());
         }
@@ -81,11 +83,18 @@ try {
             checkLogin($_GET['action']());
             }
 
-
-
         elseif($_GET['action'] === 'deleteComment') {
+            checkLogin(deleteCommentCheck());
+        }
+
+        elseif($_GET['action'] === 'deleteThisComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                checkLogin($_GET['action']($_GET['id']));
+                if($_POST['delete'] === 'true') {
+                    checkLogin( deleteComment($_GET['id']));
+                }
+                else {
+                    header('location: index.php?action=dashboard');
+                }
             }
             else {
                 //throw new Exception('Aucun article trouvé.');
@@ -120,12 +129,13 @@ try {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
                 checkLogin(deleteCheck());
             }
+            
             else {
                 throw new Exception ('page non trouvé');
             }
         }
        
-        elseif($_GET['action'] === 'delete') {
+        elseif($_GET['action'] === 'deleteThisPost') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
                 //Should this if/else be within the function 
                 if($_POST['delete'] === 'true') {

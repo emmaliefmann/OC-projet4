@@ -46,20 +46,16 @@ function loginToAdmin($username, $password)
 
     function dashboard() 
     {
-        recentPosts();
-        require('view/backend/dashboardview.php');
-    }
-
-    //call frontend functions to avoid repitition? 
-    function recentPosts() 
-    {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->getPosts();
         
         $comments = $dashboardManager->getFlaggedComments();
         require('view/backend/dashboardview.php');
+        
     }
 
+    //call frontend functions to avoid repitition? 
+    
     function deleteComment($id) 
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
@@ -106,8 +102,13 @@ function loginToAdmin($username, $password)
     }
 
     function deleteCheck() {
-        require('view/backend/deleteview.php');
+        require('view/backend/deletepostview.php');
     }
+
+    function deleteCommentCheck() {
+        require('view/backend/deletecommentview.php');
+    }
+
 
     function deletePost($postId) 
     {

@@ -13,9 +13,16 @@ function listPosts()
     require('view/frontend/indexview.php');
 }
 
+function listPostsAgain()
+{
+    $postManager = new \EmmaLiefmann\blog\model\PostManager();
+    $posts = $postManager->getPosts();
+    require('view/frontend/chapterview.php');
+}
+
 function wordLimiter( $text, $limit = 260, $chars = '0123456789' ) 
 {
-    if( strlen( $text ) > $limit ) {
+    if( strlen($text) > $limit ) {
         $words = str_word_count( $text, 2, $chars );
         $words = array_reverse( $words, TRUE );
         foreach( $words as $length => $word ) 
