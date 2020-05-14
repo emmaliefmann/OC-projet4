@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
-    <main>
+    <main class="flexbox">
         <section class="container">
             <h2>Vos articles</h3>
             <ul>

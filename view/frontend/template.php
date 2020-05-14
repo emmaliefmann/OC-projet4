@@ -6,6 +6,7 @@
     <meta name="author" value="Emma Liefmann" >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link href="public/css/style.css" rel="stylesheet"> 
     <title>Billet Simple pour l'Alaska</title>
 </head>
@@ -27,6 +28,7 @@
     </header>
     <section class="title">
         <h1>Billet Simple pour l'Alaska</h1>
+        <div class="long-line"></div>
     </section>
         <?= $content ?>
     <footer>

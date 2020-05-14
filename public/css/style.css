@@ -9,13 +9,15 @@ h1 {
     margin: 0;
     font-size: 3em;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'roboto slab';
+    color: #f5f5f5;
 }
 
 h2 {
     margin: 25px;
     font-size: 2.5em;
     text-align: center;
+    font-family: 'roboto slab';
 }
 
 /*========== HEADER AND NAVBAR =============*/
@@ -33,7 +35,7 @@ header {
 .logo {
     padding: 10px;
     font-size: 25px;
-    color: white;
+    color: #f5f5f5;
 }
 
 nav {
@@ -42,7 +44,7 @@ nav {
     position: relative;
 }
 
-p, label {
+p, label, a {
     margin: 0;
     padding: 0;
     font-family: roboto, sans-serif;
@@ -108,9 +110,13 @@ p, label {
 }
 /*=========== TITLE ============*/
 .title {
-    background-image: url("../images/titleimage.jpg");
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+      ), url("../images/titleimage.jpg");
     min-height: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -146,6 +152,15 @@ footer {
 /*comment spacing and styling*/
 .comment-flag {
     cursor: pointer;
+}
+
+.long-line {
+    width: 350px;
+    height: 3px;
+    background: #f5f5f5;
+    margin: 10px 30px 10px 270px;
+    margin-left: auto;
+    
 }
 
 .comment-reported {
@@ -202,8 +217,9 @@ footer {
         width: 150px;
     }
     .posts-section {
-        width: 100%;
+        width: 95%;
         flex-direction: column;
+        padding: 10px;
     }
     .blog-post {
         width: 100%;

@@ -9,12 +9,13 @@ session_start();
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] === 'listPosts') {
-            listPosts();
+            $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+            $posts =  $frontend-> listPosts();
         }
 
         elseif ($_GET['action'] === 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
+                post($_GET['id']);
             }
             
             else {
@@ -23,12 +24,11 @@ try {
         }
 
         elseif($_GET['action'] === 'chapters') {
-            listPostsAgain();
+            listPosts($_GET['action']);
         }
 
         elseif($_GET['action'] === 'addComment') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
-                //If neither field is empty, execute function in controller
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) {
                     addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
@@ -162,7 +162,8 @@ try {
         }
     }
     else {
-        listPosts();
+        $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+        $posts =  $frontend-> listPosts();
     }
     
 }

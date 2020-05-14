@@ -19,7 +19,10 @@
                    <?= htmlspecialchars($data['title']); ?>
                </h3>
                <h4>Publié <em><?= htmlspecialchars($data['creation_date_fr'])?></em> </h4>
-               <p><?= wordLimiter($data['content']); ?> </p>
+               <?php 
+                $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+                $summary = $frontend-> wordLimiter($data['content']); ?> 
+                <p><?= $summary ?></p>
                
                <br/>
                <a href="index.php?action=post&id=<?= $data['id'] ?>">Lire ce chapitre</a>

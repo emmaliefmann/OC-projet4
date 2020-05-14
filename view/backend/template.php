@@ -14,7 +14,9 @@
     <script>
    tinymce.init({
       selector: 'textarea#post',
-      content_css : '/public/css/style.css'
+      height: 500,
+      width: '90%',
+      content_css : '/editorStyle.css'
    });
    </script>
 </head>

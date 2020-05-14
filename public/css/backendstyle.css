@@ -66,10 +66,18 @@ p, label, li {
 
 
 /*main page section*/
-
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .container {
-    margin: 20px;
+    width: 45%;
+    min-height: 300px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 /*=========== DASHBOARD ========*/
 .dashboard-article {
@@ -130,6 +138,12 @@ button a {
 .centered-div {
     text-align: center;
     
+}
+
+.editor-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /*creator editor*/

@@ -1,15 +1,11 @@
 <?php ob_start(); ?>
    
-   <script>
-   tinymce.init({
-      selector: 'textarea#default'
-   });
-   </script>
-
+ 
    <h1>Ecrire article</h1>
-   <form action="index.php?action=newArticle" method="post">
-      <input type="text" name="title" id="title" />
+   <form action="index.php?action=newArticle" method="post" class="editor-form">
       <label for="title">Titre</label>
+      <input type="text" name="title" id="title" /> <br/><br/>
+      
       <textarea id="post" name="post">test</textarea>
 
       <input class="button" type="submit" value="Enregistrer"/>

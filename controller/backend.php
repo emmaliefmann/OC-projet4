@@ -4,6 +4,7 @@
 
 require_once('model/dashboardmanager.php');
 require_once('model/adminmanager.php');
+
 function checkLogin($function) 
 
 {
@@ -33,7 +34,6 @@ function loginToAdmin($username, $password)
             echo password_hash('password', PASSWORD_DEFAULT);
         }
     }
-    
     else {
         echo 'incorrect login';
     }
@@ -46,6 +46,7 @@ function loginToAdmin($username, $password)
 
     function dashboard() 
     {
+        //call frontend functions to avoid repitition? 
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->getPosts();
         
@@ -54,7 +55,13 @@ function loginToAdmin($username, $password)
         
     }
 
-    //call frontend functions to avoid repitition? 
+    function editPost($id) 
+    {
+        //call frontend functions to avoid repitition? 
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $request = $dashboardManager->getPost($id);
+        require('view/backend/editview.php');
+    }
     
     function deleteComment($id) 
     {
@@ -67,13 +74,6 @@ function loginToAdmin($username, $password)
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->unflagComment($id);
         header('location: index.php?action=dashboard');
-    }
-
-    function editPost($id) 
-    {
-        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
-        $request = $dashboardManager->getPost($_GET['id']);
-        require('view/backend/editview.php');
     }
 
     function addNewArticle($newPostTitle, $newPostContent) {

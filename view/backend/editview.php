@@ -5,7 +5,7 @@
         <?php
             $post = $request->fetch();
             ?>
-        <form action="index.php?action=changePost&amp;id=<?= $post['id'] ?>" method="post">
+        <form action="index.php?action=changePost&amp;id=<?= $post['id'] ?>" method="post" class="editor-form">
             <input type="text" name="title" value="<?=htmlspecialchars($post['title']); ?>" />
             </h2>
             <textarea name="modifiedPost" id="post">
