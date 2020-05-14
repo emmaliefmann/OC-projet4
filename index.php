@@ -15,7 +15,8 @@ try {
 
         elseif ($_GET['action'] === 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post($_GET['id']);
+                $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+                $post = $frontend->post($_GET['id']);
             }
             
             else {
@@ -24,13 +25,15 @@ try {
         }
 
         elseif($_GET['action'] === 'chapters') {
-            listPosts($_GET['action']);
+            $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+            $listPosts = $frontend->listPosts($_GET['action']);
         }
 
         elseif($_GET['action'] === 'addComment') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                    $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+                    $frontend->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
                 //if one is empty, tell user to fill out all areas
                 else {
@@ -46,7 +49,8 @@ try {
 
         elseif($_GET['action'] === 'flagComment') {
             if(isset($_GET['commentId']) && $_GET['commentId'] > 0) {
-                flagComment($_GET['postId'], $_GET['commentId']);
+                $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+                $frontend->flagComment($_GET['postId'], $_GET['commentId']);
             }
             else {
                 echo 'index.php not set';
@@ -140,6 +144,7 @@ try {
                 //Should this if/else be within the function 
                 if($_POST['delete'] === 'true') {
                     checkLogin( deletePost($_GET['id']));
+                    checkLogin(deletePostComments($_GET['id']));
                 }
                 else {
                     header('location: index.php?action=dashboard');

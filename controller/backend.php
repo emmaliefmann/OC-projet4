@@ -115,5 +115,15 @@ function loginToAdmin($username, $password)
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         
         $request = $dashboardManager->deletePost($postId);
+        $comments = $dashboardManager->deletePostComments($postId);
+        header('location: index.php?action=dashboard');
+    }
+
+    function deletePostComments($postId)
+    {
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        
+        $request = $dashboardManager->deletePostComments($postId);
+
         header('location: index.php?action=dashboard');
     }

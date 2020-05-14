@@ -1,5 +1,15 @@
 <?php ob_start(); ?>
     <main class="flexbox">
+        <div class="full-container">
+           
+        <h2>Actions</h2>
+        <div>
+            <button><a href="index.php?action=create">Ecrire nouvelle article</a></button>
+           <button><a href="">voir tout les commentaires</a></button> 
+           <button><a href="">Voir tous les articles</a></button>
+        </div>
+           
+        </div>
         <section class="container">
             <h2>Vos articles</h3>
             <ul>
@@ -10,7 +20,7 @@
                 <div class="dashboard-article">
                     <li><?= htmlspecialchars($data['title']); ?></li>
                     <div>
-                        <button><a href="index.php?action=editPost&id=<?= $data['id'] ?>">Edit</a></button>
+                        <button><a href="index.php?action=editPost&id=<?= $data['id'] ?>">Modifier</a></button>
                         <button><a href="index.php?action=deletePost&id=<?= $data['id'] ?>">Supprimer</a></button>
                     </div>
                 </div>
@@ -32,14 +42,15 @@
                     <?= htmlspecialchars($comment['comment'])?>
                 </li>
                 <div>
-                    <button><a href="index.php?action=deleteComment&id=<?=$comment['id']?>">delete</a></button>
-                    <button><a href="index.php?action=unflagComment&id=<?=$comment['id']?>">accept</a></button>
+                    <button><a href="index.php?action=deleteComment&id=<?=$comment['id']?>">supprimer</a></button>
+                    <button><a href="index.php?action=unflagComment&id=<?=$comment['id']?>">accepter</a></button>
                 </div>
             </div>
             <?php
             }
             ?>
          </ul>
+         
         </section>
         <button><a href="index.php?action=create">Ecrire nouvelle article</a></button>
     </main>

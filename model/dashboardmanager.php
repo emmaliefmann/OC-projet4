@@ -25,6 +25,11 @@ class DashboardManager extends Manager
         return $this->createQuery($sql, [$postId]);
     }
 
+    function deletePostComments($postId)
+    {
+        $sql = 'DELETE FROM `comments` WHERE `post_id` = ?';
+        return $this->createQuery($sql, [$postId]);
+    }
     function deleteComment($id)
     {
         $sql = 'DELETE FROM `comments` WHERE `id` = ?';

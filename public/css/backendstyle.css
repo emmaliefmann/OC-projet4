@@ -77,7 +77,14 @@ p, label, li {
     display: flex; 
     flex-direction: column;
     justify-content: space-between;
+}
 
+.full-container {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 /*=========== DASHBOARD ========*/
 .dashboard-article {

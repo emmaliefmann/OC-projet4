@@ -37,10 +37,6 @@ class Frontend
         return $text;
         //require('view/frontend/indexview.php');
     }
-}
-    
-
-
     function post($id)
     {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
@@ -70,4 +66,11 @@ class Frontend
         $flaggedComment = $commentManager->flagComment($commentId);
         header('location: index.php?action=post&id='. $postId . '#comments');
     }
+}
+    
+
+
+    
+
+    
 
