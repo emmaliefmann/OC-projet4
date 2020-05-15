@@ -4,7 +4,7 @@
            
         <h2>Actions</h2>
         <div>
-            <button><a href="index.php?action=create">Ecrire nouvelle article</a></button>
+            <button><a href="index.php?action=admin&page=create">Ecrire nouvelle article</a></button>
            <button><a href="">voir tout les commentaires</a></button> 
            <button><a href="">Voir tous les articles</a></button>
         </div>
@@ -20,8 +20,8 @@
                 <div class="dashboard-article">
                     <li><?= htmlspecialchars($data['title']); ?></li>
                     <div>
-                        <button><a href="index.php?action=editPost&id=<?= $data['id'] ?>">Modifier</a></button>
-                        <button><a href="index.php?action=deletePost&id=<?= $data['id'] ?>">Supprimer</a></button>
+                        <button><a href="index.php?action=admin&page=editPost&id=<?= $data['id'] ?>">Modifier</a></button>
+                        <button><a href="index.php?action=admin&page=deletePost&id=<?= $data['id'] ?>">Supprimer</a></button>
                     </div>
                 </div>
                 <?php
@@ -42,8 +42,8 @@
                     <?= htmlspecialchars($comment['comment'])?>
                 </li>
                 <div>
-                    <button><a href="index.php?action=deleteComment&id=<?=$comment['id']?>">supprimer</a></button>
-                    <button><a href="index.php?action=unflagComment&id=<?=$comment['id']?>">accepter</a></button>
+                    <button><a href="index.php?action=admin&page=deleteComment&id=<?=$comment['id']?>">supprimer</a></button>
+                    <button><a href="index.php?action=admin&page=unflagComment&id=<?=$comment['id']?>">accepter</a></button>
                 </div>
             </div>
             <?php
@@ -52,7 +52,7 @@
          </ul>
          
         </section>
-        <button><a href="index.php?action=create">Ecrire nouvelle article</a></button>
+        <button><a href="index.php?action=admin&page=create">Ecrire nouvelle article</a></button>
     </main>
 <?php $content = ob_get_clean(); ?>
 

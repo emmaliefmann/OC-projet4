@@ -22,7 +22,7 @@
             <ul class="nav-links">
                 <li><a href="#">A propos</a></li>
                 <li><a href="index.php?action=chapters">Chapitres</a></li>
-                <li><a href="index.php?action=admin">Admin</a></li>
+                <li><a href="index.php?action=admin&page=dashboard">Admin</a></li>
             </ul>  
 		</nav>
     </header>

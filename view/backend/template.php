@@ -30,8 +30,8 @@
                 <div class="line"></div>
             </div>
             <ul class="nav-links">
-                <li><a href="index.php?action=create">Creer post</a></li>
-                <li><a href="index.php?action=dashboard">Dashboard</a></li>
+                <li><a href="index.php?action=admin&page=create">Creer post</a></li>
+                <li><a href="index.php?action=admin&page=dashboard">Dashboard</a></li>
             </ul>  
 		</nav>
     </header>

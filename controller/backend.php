@@ -5,15 +5,21 @@
 require_once('model/dashboardmanager.php');
 require_once('model/adminmanager.php');
 
-function checkLogin($function) 
+function checkLogin() 
 
 {
-    if (isset($_SESSION['active']) &&$_SESSION['active'] === 'yes') {
-        $function;
+
+    if (isset($_SESSION['active']) &&$_SESSION['active'] === true) {
+        //$function;
+        $login = true;
+
     }
     else {
-        header('location: index.php?action=admin');
+        //header('location: index.php?action=admin');
+        $login = false;
     }
+
+    return $login;
 }
 
 function loginToAdmin($username, $password)
@@ -26,9 +32,9 @@ function loginToAdmin($username, $password)
         $dbPassword = $dbResult['password'];
         $check = password_verify($userInput, $dbPassword);
         if ($check) {
-            $_SESSION['active'] = 'yes';
+            $_SESSION['active'] = true;
             $_SESION['name'] = $username ;
-            header('location: index.php?action=dashboard');
+            header('location: index.php?action=admin&page=dashboard');
         }
         else {
             echo password_hash('password', PASSWORD_DEFAULT);
@@ -67,13 +73,13 @@ function loginToAdmin($username, $password)
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->deleteComment($id);
-        header('location: index.php?action=dashboard');
+        header('location: index.php?action=admin&page=dashboard');
     }
     function unflagComment($id)
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->unflagComment($id);
-        header('location: index.php?action=dashboard');
+        header('location: index.php?action=admin&page=dashboard');
     }
 
     function addNewArticle($newPostTitle, $newPostContent) {
@@ -85,7 +91,7 @@ function loginToAdmin($username, $password)
             throw new Exception('Impossible d\'ajouter le post.');
         }
         else {
-            header('location: index.php?action=dashboard');
+            header('location: index.php?action=admin&page=dashboard');
         }
     }
 
@@ -97,7 +103,7 @@ function loginToAdmin($username, $password)
             throw new Exception('Impossible d\'modifier le post.');
         }
         else {
-            header('location: index.php?action=dashboard');
+            header('location: index.php?action=admin&page=dashboard');
         }
     }
 
@@ -116,7 +122,7 @@ function loginToAdmin($username, $password)
         
         $request = $dashboardManager->deletePost($postId);
         $comments = $dashboardManager->deletePostComments($postId);
-        header('location: index.php?action=dashboard');
+        header('location: index.php?action=admin&page=dashboard');
     }
 
     function deletePostComments($postId)
@@ -125,5 +131,5 @@ function loginToAdmin($username, $password)
         
         $request = $dashboardManager->deletePostComments($postId);
 
-        header('location: index.php?action=dashboard');
+        header('location: index.php?action=admin&page=dashboard');
     }

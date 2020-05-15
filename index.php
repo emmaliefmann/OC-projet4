@@ -12,6 +12,7 @@ try {
             $frontend = new \EmmaLiefmann\blog\controller\Frontend();
             $posts =  $frontend-> listPosts();
         }
+    
 
         elseif ($_GET['action'] === 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -59,113 +60,120 @@ try {
 
         // -------------------- BACK OFFICE -------------------------
 
-        elseif($_GET['action'] === 'admin') {
-            if (isset($_SESSION['active']) && $_SESSION['active'] === 'yes') {
-                header('location: index.php?action=dashboard');
-            } 
-            require('view/backend/adminview.php');
-        }
-
         elseif($_GET['action'] === 'login') {
             loginToAdmin($_POST['username'], $_POST['password']);
-        } 
-
-        elseif($_GET['action'] === 'dashboard') {
-           checkLogin($_GET['action']());
         }
 
-        elseif($_GET['action'] === 'editPost') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                checkLogin($_GET['action']($_GET['id']));
-            }
-            else {
-                throw new Exception('Aucun article trouvé.');
-            }
-        }
+        //NEW URL FORMAT: index.php?action=admin&page=dashboard
 
-        elseif($_GET['action'] === 'create') {
-            checkLogin($_GET['action']());
+        elseif($_GET['action'] === 'admin') {
+            //if checkLogin = false, go to admin view
+
+            //elseif checkLogin = true && page= 'dashboard'
+            //elseif checkLogin = true && page= 'editPost' etc. 
+            //if checkLogin = true && page= unset (else?) - page=dahsboard
+            
+            $login = checkLogin(); 
+            if ($login === false) {
+                require('view/backend/adminview.php');
             }
 
-        elseif($_GET['action'] === 'deleteComment') {
-            checkLogin(deleteCommentCheck());
-        }
+            elseif (isset($_GET['page']) && $_GET['page'] === 'create' ) {
+                create();
+            }
+        
+            elseif (isset($_GET['page']) && $_GET['page'] === 'dashboard' ) {
+                dashboard();
+            }
 
-        elseif($_GET['action'] === 'deleteThisComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if($_POST['delete'] === 'true') {
-                    checkLogin( deleteComment($_GET['id']));
+            elseif (isset($_GET['page']) && $_GET['page'] === 'editPost') {
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    editPost($_GET['id']);
                 }
                 else {
-                    header('location: index.php?action=dashboard');
+                    throw new Exception('Aucun article trouvé.');
                 }
             }
-            else {
-                //throw new Exception('Aucun article trouvé.');
-                echo 'not set';
-            }
 
-        }
-
-        elseif($_GET['action'] === 'unflagComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                checkLogin($_GET['action']($_GET['id']));
+            elseif (isset($_GET['page']) && $_GET['page'] === 'deleteComment') {
+                deleteCommentCheck();
             }
-            else {
-                throw new Exception ('Commentaire non trouvé.');
-            }
-        }
         
-        elseif($_GET['action'] === 'changePost') {
-            if(isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['title']) && !empty($_POST['modifiedPost'])) {
-                    checkLogin(modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']));
+            elseif (isset($_GET['page']) && $_GET['page'] === 'deleteThisComment') {
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    if($_POST['delete'] === 'true') {
+                        deleteComment($_GET['id']);
+                    }
+                    else {
+                        header('location: index.php?action=admin&page=dashboard');
+                    }
+                }
+                else {
+                    //throw new Exception('Aucun article trouvé.');
+                    echo 'not set';
+                }
+            }
+        
+            elseif (isset($_GET['page']) && $_GET['page'] === 'unflagComment') {
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    unflagComment($_GET['id']);
+                }
+                else {
+                    throw new Exception ('Commentaire non trouvé.');
+                }
+            }
+
+            elseif (isset($_GET['page']) && $_GET['page'] === 'changePost') {
+                if(isset($_GET['id']) && $_GET['id'] > 0) {
+                    if (!empty($_POST['title']) && !empty($_POST['modifiedPost'])) {
+                        modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']);
+                    }
+                    else {
+                        throw new Exception('Tous les champs ne sont pas remplis.');
+                    }
+                }
+                else {
+                    throw new Exception('Article pas trouvé');
+                }
+                
+            }
+            elseif (isset($_GET['page']) && $_GET['page'] === 'deletePost') {
+                if(isset($_GET['id']) && $_GET['id'] > 0) {
+                    deleteCheck();
+                }
+                else {
+                    throw new Exception ('page non trouvé');
+                }
+            }
+
+            elseif (isset($_GET['page']) && $_GET['page'] === 'deleteThisPost') {
+                if(isset($_GET['id']) && $_GET['id'] > 0) {
+                    //Should this if/else be within the function 
+                    if($_POST['delete'] === 'true') {
+                        deletePost($_GET['id']);
+                        deletePostComments($_GET['id']);
+                    }
+                    else {
+                        header('location: index.php?action=admin&page=dashboard');
+                    }
+                }
+                else {
+                    echo 'post not found';
+                }                  
+            }
+
+            elseif (isset($_GET['page']) && $_GET['page'] === 'newArticle') {
+                if (!empty($_POST['title']) && !empty($_POST['post'])) {
+                    addNewArticle($_POST['title'], $_POST['post']);
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis.');
                 }
             }
-            else {
-                throw new Exception('Article pas trouvé');
-            }
-        }
-        elseif($_GET['action'] === 'deletePost') {
-            if(isset($_GET['id']) && $_GET['id'] > 0) {
-                checkLogin(deleteCheck());
-            }
-            
-            else {
-                throw new Exception ('page non trouvé');
-            }
-        }
-       
-        elseif($_GET['action'] === 'deleteThisPost') {
-            if(isset($_GET['id']) && $_GET['id'] > 0) {
-                //Should this if/else be within the function 
-                if($_POST['delete'] === 'true') {
-                    checkLogin( deletePost($_GET['id']));
-                    checkLogin(deletePostComments($_GET['id']));
-                }
-                else {
-                    header('location: index.php?action=dashboard');
-                }
-            }
-            else {
-                echo 'post not found';
-            }                
-            
-        }
-    
-        elseif($_GET['action'] === 'newArticle') {
-            //get $title and content
-            if (!empty($_POST['title']) && !empty($_POST['post'])) {
-                checkLogin(addNewArticle($_POST['title'], $_POST['post']));
-            }
-            else {
-                throw new Exception('Tous les champs ne sont pas remplis.');
-            }
+
         }
     }
+
     else {
         $frontend = new \EmmaLiefmann\blog\controller\Frontend();
         $posts =  $frontend-> listPosts();

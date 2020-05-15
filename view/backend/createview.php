@@ -2,7 +2,7 @@
    
  
    <h1>Ecrire article</h1>
-   <form action="index.php?action=newArticle" method="post" class="editor-form">
+   <form action="index.php?action=admin&page=newArticle" method="post" class="editor-form">
       <label for="title">Titre</label>
       <input type="text" name="title" id="title" /> <br/><br/>
       
