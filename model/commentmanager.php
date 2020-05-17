@@ -28,4 +28,9 @@ class CommentManager extends Manager
     {
         $sql = 'SELECT * FROM `comments` WHERE `flagged`=1';
     }
+
+    public function getAllComments()
+    {
+        $sql = 'SELECT `id`, `post_id`, `author`, `comment`, `comment_date`, `flagged` FROM `comments` WHERE `id`= 3';
+    }
 }

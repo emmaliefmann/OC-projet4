@@ -61,34 +61,33 @@ try {
         // -------------------- BACK OFFICE -------------------------
 
         elseif($_GET['action'] === 'login') {
-            loginToAdmin($_POST['username'], $_POST['password']);
+            $backend = new \EmmaLiefmann\blog\controller\Backend();
+            $backend->loginToAdmin($_POST['username'], $_POST['password']);
         }
 
         //NEW URL FORMAT: index.php?action=admin&page=dashboard
 
         elseif($_GET['action'] === 'admin') {
-            //if checkLogin = false, go to admin view
-
-            //elseif checkLogin = true && page= 'dashboard'
-            //elseif checkLogin = true && page= 'editPost' etc. 
-            //if checkLogin = true && page= unset (else?) - page=dahsboard
-            
-            $login = checkLogin(); 
+            $backend = new \EmmaLiefmann\blog\controller\Backend();
+            $login =  $backend->checkLogin(); 
             if ($login === false) {
                 require('view/backend/adminview.php');
             }
 
             elseif (isset($_GET['page']) && $_GET['page'] === 'create' ) {
-                create();
+                $backend = new \EmmaLiefmann\blog\controller\Backend();
+                $backend->create();
             }
         
             elseif (isset($_GET['page']) && $_GET['page'] === 'dashboard' ) {
-                dashboard();
+                $backend = new \EmmaLiefmann\blog\controller\Backend();
+                $backend->dashboard();
             }
 
             elseif (isset($_GET['page']) && $_GET['page'] === 'editPost') {
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    editPost($_GET['id']);
+                    $backend = new \EmmaLiefmann\blog\controller\Backend();
+                    $backend->editPost($_GET['id']);
                 }
                 else {
                     throw new Exception('Aucun article trouvé.');
@@ -96,13 +95,16 @@ try {
             }
 
             elseif (isset($_GET['page']) && $_GET['page'] === 'deleteComment') {
-                deleteCommentCheck();
+                
+                $backend = new \EmmaLiefmann\blog\controller\Backend();
+                $backend->deleteCommentCheck();
             }
         
             elseif (isset($_GET['page']) && $_GET['page'] === 'deleteThisComment') {
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                     if($_POST['delete'] === 'true') {
-                        deleteComment($_GET['id']);
+                        $backend = new \EmmaLiefmann\blog\controller\Backend();
+                        $backend->deleteComment($_GET['id']);
                     }
                     else {
                         header('location: index.php?action=admin&page=dashboard');
@@ -114,9 +116,15 @@ try {
                 }
             }
         
+            elseif (isset($_GET['page']) && $_GET['page'] === 'moderate') {
+                $backend = new \EmmaLiefmann\blog\controller\Backend();
+                $backend->moderateComments();
+            }
+
             elseif (isset($_GET['page']) && $_GET['page'] === 'unflagComment') {
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    unflagComment($_GET['id']);
+                    $backend = new \EmmaLiefmann\blog\controller\Backend();
+                    $backend->unflagComment($_GET['id']);
                 }
                 else {
                     throw new Exception ('Commentaire non trouvé.');
@@ -126,7 +134,8 @@ try {
             elseif (isset($_GET['page']) && $_GET['page'] === 'changePost') {
                 if(isset($_GET['id']) && $_GET['id'] > 0) {
                     if (!empty($_POST['title']) && !empty($_POST['modifiedPost'])) {
-                        modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']);
+                        $backend = new \EmmaLiefmann\blog\controller\Backend();
+                    $backend->modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']);
                     }
                     else {
                         throw new Exception('Tous les champs ne sont pas remplis.');
@@ -139,7 +148,8 @@ try {
             }
             elseif (isset($_GET['page']) && $_GET['page'] === 'deletePost') {
                 if(isset($_GET['id']) && $_GET['id'] > 0) {
-                    deleteCheck();
+                    $backend = new \EmmaLiefmann\blog\controller\Backend();
+                    $backend->deleteCheck();
                 }
                 else {
                     throw new Exception ('page non trouvé');
@@ -150,8 +160,9 @@ try {
                 if(isset($_GET['id']) && $_GET['id'] > 0) {
                     //Should this if/else be within the function 
                     if($_POST['delete'] === 'true') {
-                        deletePost($_GET['id']);
-                        deletePostComments($_GET['id']);
+                        $backend = new \EmmaLiefmann\blog\controller\Backend();
+                        $backend->deletePost($_GET['id']);
+                        $backend->deletePostComments($_GET['id']);
                     }
                     else {
                         header('location: index.php?action=admin&page=dashboard');
@@ -164,7 +175,8 @@ try {
 
             elseif (isset($_GET['page']) && $_GET['page'] === 'newArticle') {
                 if (!empty($_POST['title']) && !empty($_POST['post'])) {
-                    addNewArticle($_POST['title'], $_POST['post']);
+                    $backend = new \EmmaLiefmann\blog\controller\Backend();
+                    $backend->addNewArticle($_POST['title'], $_POST['post']);
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis.');

@@ -1,88 +1,85 @@
 <?php 
 
-//namespace here
+namespace EmmaLiefmann\blog\controller;
+
 
 require_once('model/dashboardmanager.php');
+require_once('model/commentmanager.php');
+require_once('model/postmanager.php');
 require_once('model/adminmanager.php');
 
-function checkLogin() 
-
-{
-
-    if (isset($_SESSION['active']) &&$_SESSION['active'] === true) {
-        //$function;
-        $login = true;
-
-    }
-    else {
-        //header('location: index.php?action=admin');
-        $login = false;
-    }
-
-    return $login;
-}
-
-function loginToAdmin($username, $password)
-{
-    $adminManager = new \EmmaLiefmann\blog\model\AdminManager();
-    $loginAttempt = $adminManager->login($username);
-    $dbResult = $loginAttempt->fetch();
-    if ($dbResult) {
-        $userInput = $password;
-        $dbPassword = $dbResult['password'];
-        $check = password_verify($userInput, $dbPassword);
-        if ($check) {
-            $_SESSION['active'] = true;
-            $_SESION['name'] = $username ;
-            header('location: index.php?action=admin&page=dashboard');
+class Backend {
+    public function checkLogin()
+    {
+        if (isset($_SESSION['active']) && $_SESSION['active'] === true) {
+            $login = true;
         }
         else {
-            echo password_hash('password', PASSWORD_DEFAULT);
+            
+            $login = false;
         }
+        //or just return $_SESSION??
+        return $login;
     }
-    else {
-        echo 'incorrect login';
-    }
-}
 
-    function create()
+    public function create()
     {
         require('view/backend/createview.php');
     }
 
-    function dashboard() 
+    public function dashboard() 
     {
-        //call frontend functions to avoid repitition? 
+        $postManager = new \EmmaLiefmann\blog\model\PostManager();
+        $posts = $postManager->getPosts();
+
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
-        $posts = $dashboardManager->getPosts();
-        
         $comments = $dashboardManager->getFlaggedComments();
-        require('view/backend/dashboardview.php');
-        
+        require('view/backend/dashboardview.php');  
     }
 
-    function editPost($id) 
+    public function loginToAdmin($username, $password)
     {
-        //call frontend functions to avoid repitition? 
-        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
-        $request = $dashboardManager->getPost($id);
+        $adminManager = new \EmmaLiefmann\blog\model\AdminManager();
+        $loginAttempt = $adminManager->login($username);
+        $dbResult = $loginAttempt->fetch();
+        if ($dbResult) {
+            $userInput = $password;
+            $dbPassword = $dbResult['password'];
+            $check = password_verify($userInput, $dbPassword);
+            if ($check) {
+                $_SESSION['active'] = true;
+                $_SESSION['name'] = $username ;
+                header('location: index.php?action=admin&page=dashboard');
+            }
+            else {
+                echo password_hash('password', PASSWORD_DEFAULT);
+            }
+        }
+        else {
+            echo 'incorrect login';
+        }
+    }
+    public function editPost($id) 
+    {
+        $postManager = new \EmmaLiefmann\blog\model\PostManager();
+        $request = $postManager->getPost($id);
         require('view/backend/editview.php');
     }
     
-    function deleteComment($id) 
+    public function deleteComment($id) 
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->deleteComment($id);
         header('location: index.php?action=admin&page=dashboard');
     }
-    function unflagComment($id)
+    public function unflagComment($id)
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $posts = $dashboardManager->unflagComment($id);
         header('location: index.php?action=admin&page=dashboard');
     }
 
-    function addNewArticle($newPostTitle, $newPostContent) {
+    public function addNewArticle($newPostTitle, $newPostContent) {
        
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $affectedLines = $dashboardManager->addPost($newPostTitle, $newPostContent);
@@ -95,7 +92,7 @@ function loginToAdmin($username, $password)
         }
     }
 
-    function modifyPost($newTitle, $newContent, $postId) 
+    public function modifyPost($newTitle, $newContent, $postId) 
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $affectedLines = $dashboardManager->modifyPost($newTitle, $newContent, $postId);
@@ -107,16 +104,16 @@ function loginToAdmin($username, $password)
         }
     }
 
-    function deleteCheck() {
+    public function deleteCheck() {
         require('view/backend/deletepostview.php');
     }
 
-    function deleteCommentCheck() {
+    public function deleteCommentCheck() {
         require('view/backend/deletecommentview.php');
     }
 
 
-    function deletePost($postId) 
+    public function deletePost($postId) 
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         
@@ -125,11 +122,21 @@ function loginToAdmin($username, $password)
         header('location: index.php?action=admin&page=dashboard');
     }
 
-    function deletePostComments($postId)
+    public function deletePostComments($postId)
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
-        
         $request = $dashboardManager->deletePostComments($postId);
-
         header('location: index.php?action=admin&page=dashboard');
     }
+
+    public function moderateComments() 
+    {
+        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
+        $comments = $dashboardManager->getAllComments();
+        
+        require('view/backend/allcommentsview.php');
+    }
+}
+
+
+

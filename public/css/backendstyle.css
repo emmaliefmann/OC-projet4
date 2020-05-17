@@ -72,11 +72,9 @@ p, label, li {
 }
 
 .container {
-    width: 45%;
+    width: 50%;
     min-height: 300px;
-    display: flex; 
-    flex-direction: column;
-    justify-content: space-between;
+   
 }
 
 .full-container {
@@ -90,6 +88,7 @@ p, label, li {
 .dashboard-article {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 

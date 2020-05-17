@@ -32,11 +32,12 @@
             <ul class="nav-links">
                 <li><a href="index.php?action=admin&page=create">Creer post</a></li>
                 <li><a href="index.php?action=admin&page=dashboard">Dashboard</a></li>
+                <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
             </ul>  
 		</nav>
     </header>
     <section class="title">
-        <h1>Bienvenu Jean !</h1>
+        <h1>Bienvenu <?= $_SESSION['name']?> !</h1>
     </section>
         <?= $content ?>
     <footer>

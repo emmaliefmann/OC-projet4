@@ -49,10 +49,10 @@
             <?php
             }
             ?>
+            <button><a href="index.php?action=admin&page=moderate">Voir tout commentaires</a></button>
          </ul>
          
         </section>
-        <button><a href="index.php?action=admin&page=create">Ecrire nouvelle article</a></button>
     </main>
 <?php $content = ob_get_clean(); ?>
 
