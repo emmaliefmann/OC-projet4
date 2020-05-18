@@ -32,7 +32,7 @@
             <ul class="nav-links">
                 <li><a href="index.php?action=admin&page=create">Creer post</a></li>
                 <li><a href="index.php?action=admin&page=dashboard">Dashboard</a></li>
-                <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
+                <li><a href="index.php?action=admin&page=signout"><i class="fas fa-sign-out-alt"></i></a></li>
             </ul>  
 		</nav>
     </header>

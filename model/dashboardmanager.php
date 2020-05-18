@@ -50,7 +50,7 @@ class DashboardManager extends Manager
 
     public function getAllComments()
     {
-        $sql = 'SELECT * FROM `comments` WHERE 1';
+        $sql = 'SELECT * FROM `comments` WHERE 1 ORDER BY post_id';
         return $this->createQuery($sql);
     }
 }

@@ -18,6 +18,17 @@ h2 {
     text-align: center;
 }
 
+.author-photo {
+    width: 250px;
+    border-radius: 50%;
+}
+
+.backhome, .backhome a, .backhome a:visited {
+    padding: 15px; 
+    color: black; 
+    text-decoration: none;
+}
+
 /*========== HEADER AND NAVBAR =============*/
 header {
     min-height: 20px;
@@ -40,7 +51,7 @@ nav {
     position: relative;
 }
 
-p, label, li {
+p, label, li, a{
     margin: 0;
     padding: 0;
     font-family: roboto, sans-serif;

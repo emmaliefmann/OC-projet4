@@ -11,14 +11,12 @@ require_once('model/adminmanager.php');
 class Backend {
     public function checkLogin()
     {
-        if (isset($_SESSION['active']) && $_SESSION['active'] === true) {
-            $login = true;
+        if (is_null($_SESSION['active'])) {
+            $login = false ;
         }
         else {
-            
-            $login = false;
+            $login = $_SESSION['active'];
         }
-        //or just return $_SESSION??
         return $login;
     }
 
@@ -52,11 +50,11 @@ class Backend {
                 header('location: index.php?action=admin&page=dashboard');
             }
             else {
-                echo password_hash('password', PASSWORD_DEFAULT);
+                require('view/backend/adminview.php');
             }
         }
         else {
-            echo 'incorrect login';
+            require('view/backend/adminview.php');
         }
     }
     public function editPost($id) 
@@ -135,6 +133,13 @@ class Backend {
         $comments = $dashboardManager->getAllComments();
         
         require('view/backend/allcommentsview.php');
+    }
+
+    public function signoutOfAdmin() 
+    {
+        session_destroy();
+        var_dump($_SESSION['active']);
+        header('location: index.php?action=listPosts');
     }
 }
 

@@ -15,13 +15,13 @@ try {
     
 
         elseif ($_GET['action'] === 'post') {
+            $frontend = new \EmmaLiefmann\blog\controller\Frontend();
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $frontend = new \EmmaLiefmann\blog\controller\Frontend();
                 $post = $frontend->post($_GET['id']);
             }
             
             else {
-                throw new Exception('Aucun article trouvé.'); 
+                $posts =  $frontend-> listPosts('chapters');
             }
         }
 
@@ -31,30 +31,30 @@ try {
         }
 
         elseif($_GET['action'] === 'addComment') {
+            $frontend = new \EmmaLiefmann\blog\controller\Frontend();
             if(isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    $frontend = new \EmmaLiefmann\blog\controller\Frontend();
                     $frontend->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
-                //if one is empty, tell user to fill out all areas
+                
                 else {
-                    throw new Exception('Tous les champs ne sont pas remplis.');
+                    //js to highlight empty fields 
+                    header('location: index.php?action=post&id=' . $postId .'#comments');
                 }
             }
 
             else {
-                //post ID isn't right
-                throw new Exception('Aucun article trouvé.');
+                $posts =  $frontend-> listPosts();
             }
         }
 
         elseif($_GET['action'] === 'flagComment') {
+            $frontend = new \EmmaLiefmann\blog\controller\Frontend();
             if(isset($_GET['commentId']) && $_GET['commentId'] > 0) {
-                $frontend = new \EmmaLiefmann\blog\controller\Frontend();
                 $frontend->flagComment($_GET['postId'], $_GET['commentId']);
             }
             else {
-                echo 'index.php not set';
+                header('location: index.php?action=post&id=' . $postId .'#comments');
             }
         }
 
@@ -65,7 +65,6 @@ try {
             $backend->loginToAdmin($_POST['username'], $_POST['password']);
         }
 
-        //NEW URL FORMAT: index.php?action=admin&page=dashboard
 
         elseif($_GET['action'] === 'admin') {
             $backend = new \EmmaLiefmann\blog\controller\Backend();
@@ -85,12 +84,12 @@ try {
             }
 
             elseif (isset($_GET['page']) && $_GET['page'] === 'editPost') {
+                $backend = new \EmmaLiefmann\blog\controller\Backend();
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $backend = new \EmmaLiefmann\blog\controller\Backend();
                     $backend->editPost($_GET['id']);
                 }
                 else {
-                    throw new Exception('Aucun article trouvé.');
+                    $backend->dashboard();
                 }
             }
 
@@ -111,8 +110,7 @@ try {
                     }
                 }
                 else {
-                    //throw new Exception('Aucun article trouvé.');
-                    echo 'not set';
+                    header('location: http://localhost/projet4/index.php?action=admin&page=moderate');
                 }
             }
         
@@ -127,22 +125,22 @@ try {
                     $backend->unflagComment($_GET['id']);
                 }
                 else {
-                    throw new Exception ('Commentaire non trouvé.');
+                    header('location: http://localhost/projet4/index.php?action=admin&page=moderate');
                 }
             }
 
             elseif (isset($_GET['page']) && $_GET['page'] === 'changePost') {
+                $backend = new \EmmaLiefmann\blog\controller\Backend();
                 if(isset($_GET['id']) && $_GET['id'] > 0) {
                     if (!empty($_POST['title']) && !empty($_POST['modifiedPost'])) {
-                        $backend = new \EmmaLiefmann\blog\controller\Backend();
                     $backend->modifyPost($_POST['title'], $_POST['modifiedPost'], $_GET['id']);
                     }
                     else {
-                        throw new Exception('Tous les champs ne sont pas remplis.');
+                        $backend->editPost($_GET['id']);
                     }
                 }
                 else {
-                    throw new Exception('Article pas trouvé');
+                    header('location: index.php?action=admin&page=dashboard');
                 }
                 
             }
@@ -152,13 +150,12 @@ try {
                     $backend->deleteCheck();
                 }
                 else {
-                    throw new Exception ('page non trouvé');
+                    header('location: index.php?action=admin&page=dashboard');
                 }
             }
 
             elseif (isset($_GET['page']) && $_GET['page'] === 'deleteThisPost') {
                 if(isset($_GET['id']) && $_GET['id'] > 0) {
-                    //Should this if/else be within the function 
                     if($_POST['delete'] === 'true') {
                         $backend = new \EmmaLiefmann\blog\controller\Backend();
                         $backend->deletePost($_GET['id']);
@@ -169,7 +166,7 @@ try {
                     }
                 }
                 else {
-                    echo 'post not found';
+                    header('location: index.php?action=admin&page=dashboard');
                 }                  
             }
 
@@ -179,10 +176,14 @@ try {
                     $backend->addNewArticle($_POST['title'], $_POST['post']);
                 }
                 else {
-                    throw new Exception('Tous les champs ne sont pas remplis.');
+                    $backend->create();
                 }
             }
 
+            elseif (isset($_GET['page']) && $_GET['page'] === 'signout') {
+                $backend = new \EmmaLiefmann\blog\controller\Backend();
+                $backend->signoutOfAdmin();
+            }
         }
     }
 

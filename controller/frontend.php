@@ -10,15 +10,17 @@ class Frontend
     function listPosts($parameters=null)
     {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
-        $posts = $postManager->getPosts();
+        
         if ($parameters) {
+            $posts = $postManager->getPosts();
             require('view/frontend/chapterview.php');
         } else {
+            $posts = $postManager->getHomePosts();
             require('view/frontend/indexview.php');
         }
     }
 
-    function wordLimiter( $text, $limit = 260, $chars = '0123456789' ) 
+    function wordLimiter( $text, $limit = 260, $chars = '0123456789><' ) 
     {
         if( strlen($text) > $limit ) {
             $words = str_word_count( $text, 2, $chars );
@@ -35,7 +37,6 @@ class Frontend
             $text = implode( " ", $words) . '&hellip;';
         }
         return $text;
-        //require('view/frontend/indexview.php');
     }
     function post($id)
     {

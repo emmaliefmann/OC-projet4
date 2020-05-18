@@ -21,8 +21,11 @@
                <h4>Publié <em><?= htmlspecialchars($data['creation_date_fr'])?></em> </h4>
                <?php 
                 $frontend = new \EmmaLiefmann\blog\controller\Frontend();
-                $summary = $frontend-> wordLimiter($data['content']); ?> 
-                <p><?= $summary ?></p>
+                $summary = $frontend-> wordLimiter($data['content']); 
+                
+                //Just get five, then see all link for loop? ?> 
+            
+                <p><?= $summary;?></p>
                
                <br/>
                <a href="index.php?action=post&id=<?= $data['id'] ?>">Lire ce chapitre</a>
