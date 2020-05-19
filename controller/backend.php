@@ -12,6 +12,7 @@ class Backend {
     public function checkLogin()
     {
         if (is_null($_SESSION['active'])) {
+            //if unset? opposite of isset
             $login = false ;
         }
         else {

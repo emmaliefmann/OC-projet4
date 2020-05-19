@@ -16,7 +16,7 @@
         </div>
         <div class="comments-container">
             <h2>Commentaires</h2>
-            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" id="comment-form" method="post">
                 <div>
                     <label for="author">Auteur</label><br/>
                     <input type="text" id="author" class="form-input" name="author" />
@@ -26,7 +26,7 @@
                     <textarea name="comment" id="comment" class="form-input"></textarea><br/><br/>
                 </div>
                 <div>
-                    <input type="submit" class="button" value="Laisser commentaire"/>
+                    <input type="submit" class="button" id="submit-comment" value="Laisser commentaire"/>
                 </div>
             </form>
            

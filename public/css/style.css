@@ -154,6 +154,10 @@ footer {
     cursor: pointer;
 }
 
+.alert {
+    border: red solid 2px;
+}
+
 .long-line {
     width: 350px;
     height: 3px;

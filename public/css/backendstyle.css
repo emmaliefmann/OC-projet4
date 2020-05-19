@@ -29,6 +29,10 @@ h2 {
     text-decoration: none;
 }
 
+.alert {
+    border: red solid 2px;
+}
+
 /*========== HEADER AND NAVBAR =============*/
 header {
     min-height: 20px;

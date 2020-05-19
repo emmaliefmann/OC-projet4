@@ -38,7 +38,6 @@ try {
                 }
                 
                 else {
-                    //js to highlight empty fields 
                     header('location: index.php?action=post&id=' . $postId .'#comments');
                 }
             }

@@ -6,9 +6,11 @@
       <label for="title">Titre</label>
       <input type="text" name="title" id="title" /> <br/><br/>
       
-      <textarea id="post" name="post">test</textarea>
-
+      <textarea id="post" name="post"></textarea>
+   <div>
       <input class="button" type="submit" value="Enregistrer"/>
+      <button><a href="index.php?action=admin&page=dashboard">Annuler</a></button>
+   </div> 
    </form>
 <?php $content = ob_get_clean(); ?>
 

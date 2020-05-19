@@ -16,6 +16,7 @@ class CommentManager extends Manager
     {
         $sql = 'INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW() )';
         return $this->createQuery($sql, array($postId, $author, $comment));
+        // to test new Exception()return false;
     }
 
     public function flagComment($commentId)
