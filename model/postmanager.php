@@ -22,10 +22,10 @@ class PostManager extends Manager
             $postObject->setContent($data['content']);
             $postObject->setCreationDate($data['creation_date_fr']);
             array_push($postObjects, [$postObject]);
-            //var_dump($postObject);
-        } 
+        }
+            var_dump($postObjects[1]);
         
-        var_dump($postObjects);
+        
     }
     
     //insert parameter to limit to five for home page but select all for chapters 
@@ -36,6 +36,7 @@ class PostManager extends Manager
         $data = $result->fetch();
         //return $this->buildObjects($data);
         $this->buildObjects($data);
+        
     }
 
     public function getHomePosts()
