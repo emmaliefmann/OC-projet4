@@ -2,21 +2,19 @@
     <main>
         <div class="single-post">
             <h2>
-            <?php
-                $post = $request->fetch();
-                ?>
-                <?= htmlspecialchars($post['title']) ?>
+            
+                <?= htmlspecialchars($post->getTitle()) ?>
             </h2>
             <h3>
-                Publié : <?= htmlspecialchars($post['creation_date_fr']);?>
+                Publié : <?= htmlspecialchars($post->getCreationDate());?>
             </h3>
             <p>
-                <?=$post['content'];?>
+                <?=$post->getContent()?>
             </p>
         </div>
         <div class="comments-container">
             <h2>Commentaires</h2>
-            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" id="comment-form" method="post">
+            <form action="index.php?action=addComment&amp;id=<?= $post->getId() ?>" id="comment-form" method="post">
                 <div>
                     <label for="author">Auteur</label><br/>
                     <input type="text" id="author" class="form-input" name="author" />

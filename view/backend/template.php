@@ -7,7 +7,7 @@
     <script src="https://cdn.tiny.cloud/1/mbjc1sklutn7ismdr9tn1qri2o08nqwlqb0jb80o3yrados5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link href="public/css/backendstyle.css" rel="stylesheet"> 
     <title>Billet Simple pour l'Alaska</title>
     <script src="https://cdn.tiny.cloud/1/mbjc1sklutn7ismdr9tn1qri2o08nqwlqb0jb80o3yrados5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

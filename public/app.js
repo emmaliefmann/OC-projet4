@@ -57,6 +57,7 @@ editorForm.addEventListener('submit', (e) => {
     if (editTitle.value == '') {
         e.preventDefault();
         editTitle.classList.add('alert');
+        // check number of characters? 
     }
     if (editPost.value == '') {
         e.preventDefault();

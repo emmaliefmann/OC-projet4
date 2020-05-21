@@ -1,14 +1,14 @@
 <?php ob_start(); ?>
     <main class="page-container">
         <aside class="author-info">
-            <img src="public/images/jean2.jpg" class="author-photo" alt="Photo de Jean" />
+            <img src="public/images/jean3.jpg" class="author-photo" alt="Photo de Jean" />
             <div>
-                <h3>À Propos de l'auteur</h3>
+                <h4>À Propos de l'auteur</h3>
                 <p>Description courte de l'auteur</p>
             </div>
         </aside>
         <div class="posts-section">
-        <h2>Les derniers chapitres</h2>
+        
         <div class="latest-posts">
           <?php
            while ($data = $posts->fetch())
@@ -28,13 +28,19 @@
                 <p><?= $summary;?></p>
                
                <br/>
-               <a href="index.php?action=post&id=<?= $data['id'] ?>">Lire ce chapitre</a>
+               <button class="newbutton"><a href="index.php?action=post&id=<?= $data['id'] ?>">CONTINUER <i class="fas fa-long-arrow-alt-right"></i></a></button>
+               
                
            </div>
            <?php 
            }
            $posts->closeCursor();
            ?>
+           <div class="blog-post">
+               <h3>Lire tous les articles</h3>
+                <button class="newbutton"><a href="index.php?action=chapters">Chapitres</a></button>
+               
+            </div>
         </div>
     </main>
     <?php $content = ob_get_clean(); ?>

@@ -11,7 +11,12 @@
             <textarea name="modifiedPost" id="post">
             <?= $post['content']; ?>
             </textarea>
-            <input class="button" type="submit" value="Enregistrer"/>
+            <div>
+                <button><a href="index.php?action=admin&page=dashboard">Annuler</a></button>
+                <input class="button" type="submit" value="Enregistrer"/>
+            </div>
+            
+
         </form>
     </main>
 <?php $content = ob_get_clean(); ?>

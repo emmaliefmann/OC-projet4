@@ -9,12 +9,14 @@ h1 {
     margin: 0;
     font-size: 3em;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'roboto slab';
+    color: #f5f5f5;
 }
 
 h2 {
     margin: 25px;
     font-size: 2.5em;
+    font-family: 'roboto slab';
     text-align: center;
 }
 
@@ -43,6 +45,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 10000;
 }
 .logo {
     padding: 10px;
@@ -109,7 +112,10 @@ p, label, li, a{
 
 /*=========== TITLE ============*/
 .title {
-    background-image: url("../images/titleimage.jpg");
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+      ), url("../images/titleimage.jpg");
     min-height: 400px;
     display: flex;
     justify-content: center;

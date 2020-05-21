@@ -19,6 +19,7 @@ class Frontend
             require('view/frontend/indexview.php');
         }
     }
+    
 
     function wordLimiter( $text, $limit = 260, $chars = '0123456789><' ) 
     {
@@ -42,8 +43,10 @@ class Frontend
     {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
         $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
-
-        $request = $postManager->getPost($id);
+        //get in one request via joining tables? 
+        $post = $postManager->getPost($id);
+        //check $request has a value, if not send to page 404 redirection header 
+        //otherwise execute as normal 
         $comments = $commentManager->getComments($id);
         require('view/frontend/postview.php');
     }
@@ -54,7 +57,7 @@ class Frontend
         $affectedLines = $commentManager->addComments($postId, $author, $comment);
 
         if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le commentaire.');
+            throw new \Exception('Impossible d\'ajouter le commentaire.');
         }
         else {
             header('location: index.php?action=post&id=' . $postId .'#comments');

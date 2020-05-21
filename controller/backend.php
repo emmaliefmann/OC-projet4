@@ -13,6 +13,7 @@ class Backend {
     {
         if (is_null($_SESSION['active'])) {
             //if unset? opposite of isset
+            //if !isset()
             $login = false ;
         }
         else {
@@ -84,7 +85,7 @@ class Backend {
         $affectedLines = $dashboardManager->addPost($newPostTitle, $newPostContent);
         
         if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le post.');
+            throw new \Exception('Impossible d\'ajouter le post.');
         }
         else {
             header('location: index.php?action=admin&page=dashboard');
@@ -96,7 +97,7 @@ class Backend {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $affectedLines = $dashboardManager->modifyPost($newTitle, $newContent, $postId);
         if ($affectedLines === false) {
-            throw new Exception('Impossible d\'modifier le post.');
+            throw new \Exception('Impossible d\'modifier le post.');
         }
         else {
             header('location: index.php?action=admin&page=dashboard');
@@ -132,7 +133,7 @@ class Backend {
     {
         $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
         $comments = $dashboardManager->getAllComments();
-        
+        //join tables? 
         require('view/backend/allcommentsview.php');
     }
 

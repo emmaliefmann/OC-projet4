@@ -10,6 +10,7 @@ try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] === 'listPosts') {
             $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+            $frontend->register();
             $posts =  $frontend-> listPosts();
         }
     
@@ -182,6 +183,11 @@ try {
             elseif (isset($_GET['page']) && $_GET['page'] === 'signout') {
                 $backend = new \EmmaLiefmann\blog\controller\Backend();
                 $backend->signoutOfAdmin();
+            }
+
+            //for 404 error 
+            else {
+                //show error page 
             }
         }
     }
