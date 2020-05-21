@@ -11,13 +11,31 @@ class PostManager extends Manager
         $postObject->setContent($post['content']);
         $postObject->setCreationDate($post['creation_date_fr']);
         return $postObject;
-        //var_dump($postObject);
-    }   
+    }
+    
+    private function buildObjects($data) {
+        $postObject = new \EmmaLiefmann\blog\model\Post();
+        $postObjects = [];
+        for($x = 0; $x <= 10; $x++) {
+            $postObject->setId($data['id']);
+            $postObject->setTitle($data['title']);
+            $postObject->setContent($data['content']);
+            $postObject->setCreationDate($data['creation_date_fr']);
+            array_push($postObjects, [$postObject]);
+            //var_dump($postObject);
+        } 
+        
+        var_dump($postObjects);
+    }
+    
     //insert parameter to limit to five for home page but select all for chapters 
     public function getPosts()
     {
         $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date DESC';
-        return $this->createQuery($sql);
+        $result = $this->createQuery($sql);
+        $data = $result->fetch();
+        //return $this->buildObjects($data);
+        $this->buildObjects($data);
     }
 
     public function getHomePosts()
