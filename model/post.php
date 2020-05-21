@@ -27,19 +27,19 @@ class Post
         return $this->creationDate;
     }
 
-    public function setId() 
+    public function setId($id) 
     {
         $this->id = $id;
     }
-    public function setTitle() 
+    public function setTitle($title) 
     {
         $this->title = $title;
     }
-    public function setContent() 
+    public function setContent($content) 
     {
         $this->content = $content;
     }
-    public function setCreationDate() 
+    public function setCreationDate($creationDate) 
     {
         $this->creationDate = $creationDate;
     }
