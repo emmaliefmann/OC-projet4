@@ -13,7 +13,7 @@ class Frontend
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
         
         if ($parameters) {
-            $posts = $postManager->getPosts();
+            $postObjects = $postManager->getPosts();
             require('view/frontend/chapterview.php');
         } else {
             $posts = $postManager->getHomePosts();

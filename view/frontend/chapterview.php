@@ -1,24 +1,21 @@
 <?php ob_start(); ?>
 <h2>All articles</h2>
 <?php
-    //foreach ($postObjects as $data)
-    var_dump($postObjects);
-    {
-    ?>
-    <div class="single-post">
+    foreach ($postObjects as $post) {
+        ?>
+        <div class="single-post">
         <h3>
-            <?= htmlspecialchars($data['title']); ?>
+            <?= htmlspecialchars($post->getTitle()); ?>
         </h3>
-        <h4>Publié <em><?= htmlspecialchars($data['creation_date_fr'])?></em> </h4>
-        <p><?= $data['content']; ?> </p>
+        <h4>Publié <em><?= htmlspecialchars($post->getCreationDate())?></em> </h4>
+        <p><?= $post->getContent(); ?> </p>
         
         <br/>
-        <a href="index.php?action=post&id=<?= $data['id'] ?>">Voir Commentaires</a>
+        <a href="index.php?action=post&id=<?= $post->getId() ?>">Voir Commentaires</a>
         
     </div>
-    <?php 
+    <?php
     }
-    //$posts->closeCursor();
-    ?>
+   ?>
 <?php $content = ob_get_clean(); ?>
 <?php require('view/frontend/template.php'); ?>

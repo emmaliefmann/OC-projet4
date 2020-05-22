@@ -15,17 +15,14 @@ class PostManager extends Manager
     
     private function buildObjects($data) {
         
-        $postObjects = [];
-        foreach($data as $postObject) {
-            $postObject = new \EmmaLiefmann\blog\model\Post();
-            $postObject ->setId($postObject['id']);
-            $postObject->setTitle($data['title']);
-            $postObject->setContent($data['content']);
-            $postObject->setCreationDate($data['creation_date_fr']);
-            array_push($postObjects, [$postObject]);
-        }
+        $postObject = new \EmmaLiefmann\blog\model\Post();
+        $postObject ->setId($data['id']);
+        $postObject->setTitle($data['title']);
+        $postObject->setContent($data['content']);
+        $postObject->setCreationDate($data['creation_date_fr']);
         
-        
+        //var_dump($postObjects);
+        return $postObject;
     }
     
     //insert parameter to limit to five for home page but select all for chapters 
@@ -35,17 +32,11 @@ class PostManager extends Manager
         $result = $this->createQuery($sql);
         $postObjects = [];
         while ($data = $result->fetch()) {
-            $postObject = new \EmmaLiefmann\blog\model\Post();
-            $postObject ->setId($data['id']);
-            $postObject->setTitle($data['title']);
-            $postObject->setContent($data['content']);
-            $postObject->setCreationDate($data['creation_date_fr']);
-            array_push($postObjects, [$postObject]);
+            $postObject = $this ->buildObject($data);
+            array_push($postObjects, $postObject);
         }
-        
-        return $postObjects;
-        //return $this->buildObjects($data);
-        //return $this->buildObjects($data);
+        //var_dump($postObjects);
+        return $postObjects;    
     }
 
     public function getHomePosts()
