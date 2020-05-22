@@ -1,7 +1,8 @@
 <?php ob_start(); ?>
 <h2>All articles</h2>
 <?php
-    while ($data = $posts->fetch())
+    //foreach ($postObjects as $data)
+    var_dump($postObjects);
     {
     ?>
     <div class="single-post">
@@ -17,7 +18,7 @@
     </div>
     <?php 
     }
-    $posts->closeCursor();
+    //$posts->closeCursor();
     ?>
 <?php $content = ob_get_clean(); ?>
 <?php require('view/frontend/template.php'); ?>

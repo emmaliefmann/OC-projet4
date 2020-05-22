@@ -14,16 +14,16 @@ class PostManager extends Manager
     }
     
     private function buildObjects($data) {
-        $postObject = new \EmmaLiefmann\blog\model\Post();
+        
         $postObjects = [];
-        for($x = 0; $x <= 10; $x++) {
-            $postObject->setId($data['id']);
+        foreach($data as $postObject) {
+            $postObject = new \EmmaLiefmann\blog\model\Post();
+            $postObject ->setId($postObject['id']);
             $postObject->setTitle($data['title']);
             $postObject->setContent($data['content']);
             $postObject->setCreationDate($data['creation_date_fr']);
             array_push($postObjects, [$postObject]);
         }
-            var_dump($postObjects[1]);
         
         
     }
@@ -33,10 +33,19 @@ class PostManager extends Manager
     {
         $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date DESC';
         $result = $this->createQuery($sql);
-        $data = $result->fetch();
-        //return $this->buildObjects($data);
-        $this->buildObjects($data);
+        $postObjects = [];
+        while ($data = $result->fetch()) {
+            $postObject = new \EmmaLiefmann\blog\model\Post();
+            $postObject ->setId($data['id']);
+            $postObject->setTitle($data['title']);
+            $postObject->setContent($data['content']);
+            $postObject->setCreationDate($data['creation_date_fr']);
+            array_push($postObjects, [$postObject]);
+        }
         
+        return $postObjects;
+        //return $this->buildObjects($data);
+        //return $this->buildObjects($data);
     }
 
     public function getHomePosts()
