@@ -3,11 +3,6 @@
 namespace EmmaLiefmann\blog\controller;
 
 
-require_once('model/dashboardmanager.php');
-require_once('model/commentmanager.php');
-require_once('model/postmanager.php');
-require_once('model/adminmanager.php');
-
 class Backend {
     public function checkLogin()
     {

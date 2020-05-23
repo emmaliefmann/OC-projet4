@@ -1,7 +1,6 @@
 <?php
 namespace EmmaLiefmann\blog\model;
-require_once('model/manager.php');
-require_once('model/post.php');
+
 class PostManager extends Manager 
 {
     private function buildObject($post) {

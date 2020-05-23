@@ -1,8 +1,6 @@
 <?php
 
 namespace EmmaLiefmann\blog\model;
-require_once('model/manager.php');
-require_once('model/comment.php');
 
 class CommentManager extends Manager
 {

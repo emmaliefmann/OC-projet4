@@ -1,8 +1,10 @@
 <?php 
 
+use EmmaLiefmann\blog\config\Autoloader;
 
-require_once('controller/frontend.php');
-require_once('controller/backend.php');
+
+require('./config/autoloader.php');
+Autoloader::register();
 session_start();
 
 
