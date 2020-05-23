@@ -24,21 +24,21 @@
                     <textarea name="comment" id="comment" class="form-input"></textarea><br/><br/>
                 </div>
                 <div>
-                    <input type="submit" class="button" id="submit-comment" value="Laisser commentaire"/>
+                    <input type="submit" class="newbutton" id="submit-comment" value="Laisser commentaire"/>
                 </div>
             </form>
            
            <?php
-            while ($comment = $comments->fetch())
+            foreach ($comments as $comment)
             //create variable for flagged comments 
             {
                 
             ?>
             <div class="comment" id="comments">
-                <h4><?= htmlspecialchars($comment['author'])?> </h4>
+                <h4><?= htmlspecialchars($comment->getAuthor())?> </h4>
                 <div>
-                    <a href="index.php?action=flagComment&postId=<?=$post['id']?>&commentId=<?=$comment['id']?>" title="Signaler ce commentaire">
-                        <i class="far fa-flag <?php if($comment['flagged'] === '1') {
+                    <a href="index.php?action=flagComment&postId=<?=$post->getId()?>&commentId=<?=$comment->getId()?>" title="Signaler ce commentaire">
+                        <i class="far fa-flag <?php if($comment->getFlagged() === '1') {
                     echo'comment-reported';
                 } else {
                     echo 'comment-flag';
@@ -46,7 +46,7 @@
                 ?>"></i>
                     </a>
                 </div>
-                <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> </p>
+                <p><?= nl2br(htmlspecialchars($comment->getComment())) ?> </p>
                     
             </div>
         <?php

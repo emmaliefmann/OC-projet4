@@ -2,15 +2,15 @@
 <div class="full-container">
     <h2>Moderer les commentaires</h2>
     <ul>
-        <?php while ($comment = $comments->fetch())
+        <?php foreach ($comments as $comment)
         {
         ?>
-            <h3><?=$comment['post_id'];?></h3>
+            <h3><?=$comment->getPostId();?></h3>
             <div class="dashboard-article">
                 <li>
-                    <?=$comment['comment'];?>
+                    <?=$comment->getComment();?>
                 </li>
-                <button><a href="index.php?action=admin&page=deleteComment&id=<?=$comment['id']?>">supprimer</a></button>
+                <button><a href="index.php?action=admin&page=deleteComment&id=<?=$comment->getComment()?>">supprimer</a></button>
             </div>
         
         <?php

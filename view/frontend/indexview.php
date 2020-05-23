@@ -11,34 +11,34 @@
         
         <div class="latest-posts">
           <?php
-           while ($data = $posts->fetch())
+          //while index is less than 2
+           foreach ($posts as $post)
            {
             ?>
            <div class="blog-post">
                <h3>
-                   <?= htmlspecialchars($data['title']); ?>
+                   <?= htmlspecialchars($post->getTitle()); ?>
                </h3>
-               <h4>Publié <em><?= htmlspecialchars($data['creation_date_fr'])?></em> </h4>
+               <h4>Publié <em><?= htmlspecialchars($post->getCreationDate())?></em> </h4>
                <?php 
                 $frontend = new \EmmaLiefmann\blog\controller\Frontend();
-                $summary = $frontend-> wordLimiter($data['content']); 
+                $summary = $frontend-> wordLimiter($post->getContent()); 
                 
                 //Just get five, then see all link for loop? ?> 
             
                 <p><?= $summary;?></p>
                
                <br/>
-               <button class="newbutton"><a href="index.php?action=post&id=<?= $data['id'] ?>">CONTINUER <i class="fas fa-long-arrow-alt-right"></i></a></button>
+               <a class="newbutton" href="index.php?action=post&id=<?= $post->getId() ?>">CONTINUER <i class="fas fa-long-arrow-alt-right"></i></a>
                
                
            </div>
            <?php 
            }
-           $posts->closeCursor();
            ?>
            <div class="blog-post">
-               <h3>Lire tous les articles</h3>
-                <button class="newbutton"><a href="index.php?action=chapters">Chapitres</a></button>
+                <h3>Lire tous les articles</h3>
+                <a class="newbutton" href="index.php?action=chapters">CHAPITRES</a></button>
                
             </div>
         </div>

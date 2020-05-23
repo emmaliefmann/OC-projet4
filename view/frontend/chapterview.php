@@ -11,7 +11,7 @@
         <p><?= $post->getContent(); ?> </p>
         
         <br/>
-        <a href="index.php?action=post&id=<?= $post->getId() ?>">Voir Commentaires</a>
+        <a class="newbutton" href="index.php?action=post&id=<?= $post->getId(); ?>">Voir Commentaires</a>
         
     </div>
     <?php

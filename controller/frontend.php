@@ -5,6 +5,7 @@ namespace EmmaLiefmann\blog\controller;
 require_once('model/postmanager.php');
 require_once('model/post.php');
 require_once('model/commentmanager.php');
+require_once('model/comment.php');
 
 class Frontend 
 {

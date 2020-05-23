@@ -6,6 +6,16 @@ require_once('model/manager.php');
 
 class DashboardManager extends Manager 
 {
+    private function buildObject($comment) {
+        $commentObject = new \EmmaLiefmann\blog\model\Comment();
+        $commentObject->setId($comment['id']);
+        $commentObject->setPostId($comment['post_id']);
+        $commentObject->setComment($comment['comment']);
+        //$commentObject->setCommentDate($comment['comment_date_fr']);
+        $commentObject->setFlagged($comment['flagged']);
+        return $commentObject;
+    }   
+
     function deletePost($postId)
     {
         $sql = 'DELETE FROM `posts` WHERE `id` = ?';
@@ -39,7 +49,13 @@ class DashboardManager extends Manager
     function getFlaggedComments()
     {
         $sql = 'SELECT * FROM `comments` WHERE `flagged`=1';
-        return $this->createQuery($sql);
+        $result = $this->createQuery($sql);
+        $commentObjects = [];
+        while ($data = $result->fetch()) {
+            $commentObject = $this->buildObject($data);
+            array_push($commentObjects, $commentObject);
+        }
+        return $commentObjects;
     }
 
     function unflagComment($id)
@@ -51,6 +67,12 @@ class DashboardManager extends Manager
     public function getAllComments()
     {
         $sql = 'SELECT * FROM `comments` WHERE 1 ORDER BY post_id';
-        return $this->createQuery($sql);
+        $result = $this->createQuery($sql);
+        $commentObjects = [];
+        while ($data = $result->fetch()) {
+            $commentObject = $this->buildObject($data);
+            array_push($commentObjects, $commentObject);
+        }
+        return $commentObjects;
     }
 }

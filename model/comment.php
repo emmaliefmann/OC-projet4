@@ -13,47 +13,47 @@ class Comment
 
     public function getId()
     {
-        return $this->$id;
+        return $this->id;
     }
     public function getPostId()
     {
-        return $this->$postId;
+        return $this->postId;
     }
     public function getAuthor()
     {
-        return $this->$author;
+        return $this->author;
     }
     public function getComment()
     {
-        return $this->$id;
+        return $this->comment;
     }
     public function getCommentDate()
     {
-        return $this->$id;
+        return $this->commentDate;
     }
     public function getFlagged()
     {
-        return $this->$id;
+        return $this->flagged;
     }
 
     public function setId($id)
     {
-        $id = $this->$id; 
+       $this->id = $id; 
     }
     public function setPostId($postId)
     {
-        $postId = $this->$postId;
+        $this->postId = $postId;
     }
     public function setComment($comment)
     {
-        $comment = $this->$comment;
+        $this->comment = $comment; 
     }
     public function setCommentDate($commentDate)
     {
-        $commentDate = $this->$commentDate;
+        $this->commentDate = $commentDate;
     }
     public function setFlagged($flagged)
     {
-        $flagged = $this->$flagged;
+        $this->flagged = $flagged;
     }
 }

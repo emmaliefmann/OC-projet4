@@ -62,7 +62,7 @@ class Backend {
     public function editPost($id) 
     {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
-        $request = $postManager->getPost($id);
+        $post = $postManager->getPost($id);
         require('view/backend/editview.php');
     }
     

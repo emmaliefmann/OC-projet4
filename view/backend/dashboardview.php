@@ -14,14 +14,14 @@
             <h2>Vos articles</h3>
             <ul>
                 <?php
-                while ($data = $posts->fetch())
+                foreach ($posts as $post)
                 {
                 ?>
                 <div class="dashboard-article">
-                    <li><?= htmlspecialchars($data['title']); ?></li>
+                    <li><?= htmlspecialchars($post->getTitle()); ?></li>
                     <div>
-                        <button><a href="index.php?action=admin&page=editPost&id=<?= $data['id'] ?>">Modifier</a></button>
-                        <button><a href="index.php?action=admin&page=deletePost&id=<?= $data['id'] ?>">Supprimer</a></button>
+                        <button><a href="index.php?action=admin&page=editPost&id=<?= $post->getId() ?>">Modifier</a></button>
+                        <button><a href="index.php?action=admin&page=deletePost&id=<?= $post->getId() ?>">Supprimer</a></button>
                     </div>
                 </div>
                 <?php
@@ -33,17 +33,17 @@
         <h2>Commentaires signalés <i class="far fa-flag"></i></h2>
         <ul>
             <?php
-            while($comment = $comments->fetch())
+            foreach ($comments as $comment)
             {
             ?>
             <div class="dashboard-article">
                 <li>
-                    <strong><?= htmlspecialchars($comment['author'])?> - </strong>
-                    <?= htmlspecialchars($comment['comment'])?>
+                    <strong><?= htmlspecialchars($comment->getAuthor())?></strong>
+                    <?= htmlspecialchars($comment->getComment())?>
                 </li>
                 <div>
-                    <button><a href="index.php?action=admin&page=deleteComment&id=<?=$comment['id']?>">supprimer</a></button>
-                    <button><a href="index.php?action=admin&page=unflagComment&id=<?=$comment['id']?>">accepter</a></button>
+                    <button><a href="index.php?action=admin&page=deleteComment&id=<?=$comment->getId()?>">supprimer</a></button>
+                    <button><a href="index.php?action=admin&page=unflagComment&id=<?=$comment->getId()?>">accepter</a></button>
                 </div>
             </div>
             <?php
