@@ -29,8 +29,10 @@
             </form>
            
            <?php
+           
             foreach ($comments as $comment)
-            //create variable for flagged comments 
+            $flagged = $comment->getFlagged()=== '1';
+        
             {
                 
             ?>
@@ -38,7 +40,7 @@
                 <h4><?= htmlspecialchars($comment->getAuthor())?> </h4>
                 <div>
                     <a href="index.php?action=flagComment&postId=<?=$post->getId()?>&commentId=<?=$comment->getId()?>" title="Signaler ce commentaire">
-                        <i class="far fa-flag <?php if($comment->getFlagged() === '1') {
+                        <i class="far fa-flag <?php if($flagged) {
                     echo'comment-reported';
                 } else {
                     echo 'comment-flag';

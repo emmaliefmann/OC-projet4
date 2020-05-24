@@ -11,7 +11,26 @@ h1 {
     text-align: center;
     font-family: 'roboto slab';
     color: #f5f5f5;
+    /*for animation*/
+    border-right: .15em solid #f5f5f5;
+    overflow: hidden;
+    
+    white-space: nowrap;
+    animation: 
+    typing 3.5s steps(40, end),
+    blinking-caret .75s step-end infinite;
 }
+
+@keyframes typing {
+    from { width: 0 }
+    to {width: 650px }
+}
+
+@keyframes blink-caret {
+    from, to {border-color: transparent}
+    50% {border-color: #f5f5f5;}
+}
+
 
 h2 {
     margin: 25px;
@@ -40,6 +59,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .logo {
@@ -61,27 +81,25 @@ p, label, a, a:visited {
     text-decoration: none;
 }
 
-.newbutton {
+a.newbutton {
     display: inline-block;
     padding: 0.35em 1.2em;
     color: #120B1E;
     font-family: roboto;
     border: 0.16em solid #120B1E;
-    margin: 0 0.3em 0.3em 0;
+    margin: 20px 5px 5px 0px;
     border-radius: 0.12em;
     text-decoration: none;
     text-align: center;
     font-weight: 300;
-    transition: all 0.2s;
-    
+    transition: all 0.3s;
+    width: 30%;
+    min-width: 150px;
+    max-width: 170px;
 }
 
-.newbutton:visited {
-    color: #120B1E;
-}
-
-.newbutton:hover {
-    color: #ffffff !important;
+a.newbutton:hover {
+    color: #ffffff;
     background-color: #120B1E;
 }
 
@@ -142,6 +160,9 @@ p, label, a, a:visited {
 
 .blog-post {
     width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 /*=========== TITLE ============*/
 .title {

@@ -1,36 +1,34 @@
 <?php ob_start(); ?>
     <main class="flexbox">
         <div class="full-container">
-           
-        <h2>Actions</h2>
-        <div>
-            <button><a href="index.php?action=admin&page=create">Ecrire nouvelle article</a></button>
-           <button><a href="">voir tout les commentaires</a></button> 
-           <button><a href="">Voir tous les articles</a></button>
-        </div>
-           
+            <h2>Actions</h2>
+            <div>
+                <a class="newbutton" href="index.php?action=admin&page=create">Ecrire nouvelle article</a>
+                <a class="newbutton" href="Voir tout commentaires">voir tout les commentaires</a>
+            </div>
         </div>
         <section class="container">
             <h2>Vos articles</h3>
-            <ul>
+            
                 <?php
                 foreach ($posts as $post)
                 {
                 ?>
                 <div class="dashboard-article">
-                    <li><?= htmlspecialchars($post->getTitle()); ?></li>
-                    <div>
-                        <button><a href="index.php?action=admin&page=editPost&id=<?= $post->getId() ?>">Modifier</a></button>
-                        <button><a href="index.php?action=admin&page=deletePost&id=<?= $post->getId() ?>">Supprimer</a></button>
+                    <p class="dash-title" ><?= htmlspecialchars($post->getTitle()); ?></p>
+                    <div class="overlay"></div>
+                    <div class="dashboard-buttons">
+                        <a class="newbutton" href="index.php?action=admin&page=editPost&id=<?= $post->getId() ?>">Modifier</a></button>
+                        <a class="newbutton" href="index.php?action=admin&page=deletePost&id=<?= $post->getId() ?>">Supprimer</a></button>
                     </div>
                 </div>
                 <?php
                 }
                 ?>
-            </ul>
+            
         </section>
         <section class="container">
-        <h2>Commentaires signalés <i class="far fa-flag"></i></h2>
+        <h2>Commentaires signalés</i></h2>
         <ul>
             <?php
             foreach ($comments as $comment)
@@ -49,8 +47,6 @@
             <?php
             }
             ?>
-            <button><a href="index.php?action=admin&page=moderate">Voir tout commentaires</a></button>
-         </ul>
          
         </section>
     </main>

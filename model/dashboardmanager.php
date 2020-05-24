@@ -9,6 +9,7 @@ class DashboardManager extends Manager
         $commentObject->setId($comment['id']);
         $commentObject->setPostId($comment['post_id']);
         $commentObject->setComment($comment['comment']);
+        $commentObject->setAuthor($comment['author']);
         //$commentObject->setCommentDate($comment['comment_date_fr']);
         $commentObject->setFlagged($comment['flagged']);
         return $commentObject;

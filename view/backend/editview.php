@@ -8,9 +8,9 @@
             <textarea name="modifiedPost" id="post">
             <?= $post->getContent(); ?>
             </textarea>
-            <div>
-                <button><a href="index.php?action=admin&page=dashboard">Annuler</a></button>
-                <input class="button" type="submit" value="Enregistrer"/>
+            <div class="margins">
+                <a class="newbutton" href="index.php?action=admin&page=dashboard">Annuler</a>
+                <input class="newbutton" type="submit" value="Enregistrer"/>
             </div>
             
 

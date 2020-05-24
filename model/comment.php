@@ -44,6 +44,10 @@ class Comment
     {
         $this->postId = $postId;
     }
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
     public function setComment($comment)
     {
         $this->comment = $comment; 

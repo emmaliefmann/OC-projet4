@@ -38,6 +38,7 @@
            ?>
            <div class="blog-post">
                 <h3>Lire tous les articles</h3>
+                <p>Vous pouvez lire tous les chapitres de "Billet simple pour l'Alaska ici.</p><br/>
                 <a class="newbutton" href="index.php?action=chapters">CHAPITRES</a></button>
                
             </div>

@@ -6,7 +6,8 @@ namespace EmmaLiefmann\blog\controller;
 class Backend {
     public function checkLogin()
     {
-        if (is_null($_SESSION['active'])) {
+
+        if (!isset($_SESSION['active'])) {
             //if unset? opposite of isset
             //if !isset()
             $login = false ;

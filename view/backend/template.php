@@ -37,7 +37,7 @@
 		</nav>
     </header>
     <section class="title">
-        <h1>Bienvenu <?= $_SESSION['name']?> !</h1>
+        <h1>Bienvenu <?=ucfirst($_SESSION['name'])?> !</h1>
     </section>
         <?= $content ?>
     <footer>

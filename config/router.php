@@ -10,7 +10,6 @@ class Router
             if (isset($_GET['action'])) {
                 if ($_GET['action'] === 'listPosts') {
                     $frontend = new \EmmaLiefmann\blog\controller\Frontend();
-                    $frontend->register();
                     $posts =  $frontend-> listPosts();
                 }
             

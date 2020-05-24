@@ -103,12 +103,76 @@ p, label, li, a{
     align-items: center;
 }
 /*=========== DASHBOARD ========*/
+
+/*dashboard article button hover annimation*/
 .dashboard-article {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    position: relative;
+    margin: auto;
+    width: 320px;
+    height: 90px;
+    
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.0);
+    transition: background 0.5s ease;
+}
+.dashboard-article:hover .overlay {
+    display: block;
 }
 
+.dashboard-article:hover .dashboard-buttons {
+    opacity: 1;
+}
+.dashboard-article:hover .dash-title {
+    top: 10px;
+}
+.dash-title {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 40px;
+    transition: top .5s ease;
+}
+.dashboard-buttons {
+    opacity: 0;
+    z-index: 10;
+    transition: opacity .35s ease;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+/*rest of code*/
+.newbutton {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    color: #120B1E;
+    font-family: roboto;
+    border: 0.16em solid #120B1E;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 300;
+    font-size: 1em;
+    transition: all 0.3s;
+    cursor: pointer;
+    z-index: 10;
+}
+
+a.newbutton:hover, .newbutton:hover {
+    color: #ffffff;
+    background-color: #120B1E;
+}
 
 /*=========== TITLE ============*/
 .title {
@@ -225,6 +289,10 @@ button a {
     .posts-section {
         width: 100%;
         flex-direction: column;
+    }
+
+    .container {
+        width: 95%;
     }
     .blog-post {
         width: 100%;

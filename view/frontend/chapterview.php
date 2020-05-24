@@ -1,6 +1,5 @@
-<?php ob_start(); ?>
-<h2>All articles</h2>
-<?php
+<?php ob_start(); 
+
     foreach ($postObjects as $post) {
         ?>
         <div class="single-post">
