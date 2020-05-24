@@ -12,13 +12,14 @@
 </head>
 <body>
     <header>
-        <a href="index.php" class="logo"><i class="fas fa-home"></i></a> 
+        
         <nav>
             <div class="hamburger">
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
             </div>
+            <a href="index.php" class="logo"><i class="fas fa-home"></i></a> 
             <ul class="nav-links">
                 <li><a href="#">A propos</a></li>
                 <li><a href="index.php?action=chapters">Chapitres</a></li>

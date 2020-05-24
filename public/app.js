@@ -16,7 +16,7 @@ const editTitle = document.querySelector('#title');
 const editPost = document.querySelector('#post');
 
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('nav-links.open');
+    navLinks.classList.toggle('nav-links-open');
     console.log('mobile');
 });
 
