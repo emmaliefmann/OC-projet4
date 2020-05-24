@@ -1,6 +1,6 @@
 <?php ob_start(); 
 
-    foreach ($postObjects as $post) {
+    foreach ($posts as $post) {
         ?>
         <div class="single-post">
         <h3>

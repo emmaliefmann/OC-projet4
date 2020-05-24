@@ -2,9 +2,9 @@
     <main class="flexbox">
         <div class="full-container">
             <h2>Actions</h2>
-            <div>
+            <div class="flexbox">
                 <a class="newbutton" href="index.php?action=admin&page=create">Ecrire nouvelle article</a>
-                <a class="newbutton" href="Voir tout commentaires">voir tout les commentaires</a>
+                <a class="newbutton" href="index.php?action=admin&page=moderate">voir tout les commentaires</a>
             </div>
         </div>
         <section class="container">
@@ -15,7 +15,7 @@
                 {
                 ?>
                 <div class="dashboard-article">
-                    <p class="dash-title" ><?= htmlspecialchars($post->getTitle()); ?></p>
+                    <p class="dash-title" ><?= strtoupper($post->getTitle()); ?></p>
                     <div class="overlay"></div>
                     <div class="dashboard-buttons">
                         <a class="newbutton" href="index.php?action=admin&page=editPost&id=<?= $post->getId() ?>">Modifier</a></button>
@@ -28,23 +28,25 @@
             
         </section>
         <section class="container">
-        <h2>Commentaires signalés</i></h2>
-        <ul>
+        <h2>Commentaires signalés</h2>
             <?php
             foreach ($comments as $comment)
             {
-            ?>
-            <div class="dashboard-article">
-                <li>
-                    <strong><?= htmlspecialchars($comment->getAuthor())?></strong>
-                    <?= htmlspecialchars($comment->getComment())?>
-                </li>
-                <div>
-                    <button><a href="index.php?action=admin&page=deleteComment&id=<?=$comment->getId()?>">supprimer</a></button>
-                    <button><a href="index.php?action=admin&page=unflagComment&id=<?=$comment->getId()?>">accepter</a></button>
-                </div>
-            </div>
-            <?php
+                if($comment->getFlagged()==='1') {
+                    ?>
+                    <div class="dashboard-article">
+                        <div class="overlay"></div>
+                        <p class="dash-title">
+                            <strong><?= htmlspecialchars($comment->getAuthor())?></strong>
+                            <?= htmlspecialchars($comment->getComment())?>
+                        </p>       
+                        <div class="dashboard-buttons">
+                            <a href="index.php?action=admin&page=deleteComment&id=<?=$comment->getId()?>" class="newbutton">supprimer</a>
+                            <a href="index.php?action=admin&page=unflagComment&id=<?=$comment->getId()?>" class="newbutton">accepter</a>
+                        </div>
+                    </div>
+                    <?php
+                }
             }
             ?>
          

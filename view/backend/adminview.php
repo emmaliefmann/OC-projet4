@@ -18,10 +18,19 @@
         <img src="public/images/jean2.jpg" class="author-photo" alt="Photo de Jean" />
         <form action="index.php?action=login" method="post" class="login">
             <p>
-                <input type="text" name="username" class="form-input"/><br/>
-                <input type="password" name="password" class="form-input"/><br/><br/>
-                <input type="submit" value="valider" class="button"/>
-                <button><a href="index.php?action=listPosts">Annuler</a></button>
+                <div class="relative">
+                    <label for="username"><i class="fas fa-user"></i></label>
+                    <input type="text" name="username" class="form-input"/><br/>
+                </div>
+                <div class="relative">
+                    <label for="password"><i class="fas fa-key"></i></label>
+                    <input type="password" name="password" class="form-input"/><br/><br/>
+                </div>
+                <div class="buttoncontainer">
+                    <input type="submit" value="VALIDER" class="newbutton"/>
+                    <a href="index.php?action=listPosts" class="newbutton">ANNULER</a>
+                </div>
+                
             </p>
         </form>
     </div>

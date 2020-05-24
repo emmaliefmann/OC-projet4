@@ -38,5 +38,17 @@ class CommentManager extends Manager
         $sql = 'UPDATE `comments` SET `flagged`= 1 WHERE `id`= ?';
         return $this->createQuery($sql, array($commentId));
     }
+
+    public function getAllComments()
+    {
+        $sql = 'SELECT id, flagged, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM `comments` WHERE 1 ORDER BY post_id';
+        $result = $this->createQuery($sql);
+        $commentObjects = [];
+        while ($data = $result->fetch()) {
+            $commentObject = $this->buildObject($data);
+            array_push($commentObjects, $commentObject);
+        }
+        return $commentObjects;
+    }
     
 }

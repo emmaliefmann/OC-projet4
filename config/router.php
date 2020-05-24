@@ -56,6 +56,10 @@ class Router
                         header('location: index.php?action=post&id=' . $postId .'#comments');
                     }
                 }
+                
+                elseif($_GET['action'] === '404error') {
+                    require('view/404error.php');
+                }
         
                 // -------------------- BACK OFFICE -------------------------
         
@@ -184,9 +188,10 @@ class Router
                         $backend->signoutOfAdmin();
                     }
         
-                    //for 404 error 
+                    
                     else {
-                        //show error page 
+                        //404 error, but doesn't work
+                        require('view/404error.php');
                     }
                 }
             }

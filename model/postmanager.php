@@ -12,7 +12,6 @@ class PostManager extends Manager
         return $postObject;
     }
     
-    //insert parameter to limit to five for home page but select all for chapters 
     public function getPosts()
     {
         $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date DESC';
@@ -22,20 +21,6 @@ class PostManager extends Manager
             $postObject = $this ->buildObject($data);
             array_push($postObjects, $postObject);
         }
-
-        return $postObjects;    
-    }
-
-    public function getHomePosts()
-    {
-        $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 3';
-        $result = $this->createQuery($sql);
-        $postObjects = [];
-        while ($data = $result->fetch()) {
-            $postObject = $this ->buildObject($data);
-            array_push($postObjects, $postObject);
-        }
-
         return $postObjects;    
     }
     
@@ -44,7 +29,6 @@ class PostManager extends Manager
         $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?';
         $result = $this->createQuery($sql, [$postId]);
         $post = $result->fetch();
-        //var_dump($post);
         return $this->buildObject($post);
     }
 }

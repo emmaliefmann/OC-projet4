@@ -1,15 +1,13 @@
 <?php ob_start(); ?>
    
  
-   <h1>Ecrire article</h1>
+   <h2>Ecrire article</h2>
    <form action="index.php?action=admin&page=newArticle" method="post" class="editor-form">
-      <label for="title">Titre</label>
-      <input type="text" name="title" id="title" /> <br/><br/>
-      
+      <input type="text" name="title" id="title" placeholder="Titre" class="creation-title"/> <br/><br/>
       <textarea id="post" name="post"></textarea>
-   <div>
-      <input class="button" type="submit" value="Enregistrer"/>
-      <button><a href="index.php?action=admin&page=dashboard">Annuler</a></button>
+   <div class="buttoncontainer">
+      <input class="newbutton" type="submit" value="Enregistrer"/>
+      <a href="index.php?action=admin&page=dashboard" class="newbutton">Annuler</a>
    </div> 
    </form>
 <?php $content = ob_get_clean(); ?>

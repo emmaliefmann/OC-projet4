@@ -28,8 +28,8 @@ class Backend {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
         $posts = $postManager->getPosts();
 
-        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
-        $comments = $dashboardManager->getFlaggedComments();
+        $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
+        $comments = $commentManager->getAllComments();
         require('view/backend/dashboardview.php');  
     }
 
@@ -127,8 +127,8 @@ class Backend {
 
     public function moderateComments() 
     {
-        $dashboardManager = new \EmmaLiefmann\blog\model\DashboardManager();
-        $comments = $dashboardManager->getAllComments();
+        $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
+        $comments = $commentManager->getAllComments();
         //join tables? 
         require('view/backend/allcommentsview.php');
     }

@@ -20,9 +20,34 @@ h2 {
     text-align: center;
 }
 
+/*==========ADMIN PAGE=========*/
 .author-photo {
-    width: 250px;
+    width: 200px;
     border-radius: 50%;
+    animation: zoom 2s;
+}
+.form-input {
+    min-width: 60%;
+    padding: 10px 30px;
+    font-size: 0.9em;
+    font-family: roboto;
+    border: none; 
+    border-bottom: 1px solid #999;
+    resize: none;
+    color: black;
+}
+label {
+    position: absolute;
+    left: 0;
+    top: 20%;
+}
+
+
+@keyframes zoom {
+    0% {transform: scale(0.1);
+        opacity: 0; }
+    100% {transform: scale(1);
+        opacity: 1;}
 }
 
 .backhome, .backhome a, .backhome a:visited {
@@ -58,7 +83,7 @@ nav {
     position: relative;
 }
 
-p, label, li, a{
+p, li, a{
     margin: 0;
     padding: 0;
     font-family: roboto, sans-serif;
@@ -87,12 +112,16 @@ p, label, li, a{
 .flexbox {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .container {
     width: 50%;
     min-height: 300px;
-   
+}
+
+.relative {
+    position: relative;
 }
 
 .full-container {
@@ -101,6 +130,7 @@ p, label, li, a{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 30px;
 }
 /*=========== DASHBOARD ========*/
 
@@ -118,8 +148,6 @@ p, label, li, a{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.0);
-    transition: background 0.5s ease;
 }
 .dashboard-article:hover .overlay {
     display: block;
@@ -130,6 +158,7 @@ p, label, li, a{
 }
 .dashboard-article:hover .dash-title {
     top: 10px;
+    text-decoration: underline;
 }
 .dash-title {
     position: absolute;
@@ -211,14 +240,8 @@ footer {
     margin: 20px;
 }
 
-button, .button {
-    padding: 6px;
-    border: none; 
-    background-color: lightblue;
-    cursor: pointer;
-    border-radius: 6px;
-    border-bottom: rgb(91, 91, 145) solid 2px;
-    margin: 3px;
+.buttoncontainer {
+    margin-top: 25px;
 }
 
 button a {
@@ -242,6 +265,19 @@ button a {
     width: 90%;
     min-height: 200px;
     visibility: visible;
+}
+
+.creation-title {
+    margin-bottom: 30px;
+    padding: 5px; 
+    min-width: 40%;
+    padding: 6px 30px;
+    font-size: 1.1em;
+    font-family: roboto;
+    border: none; 
+    border-bottom: 1px solid #999;
+    resize: none;
+    color: black;
 }
 @media screen and (max-width: 768px) {
     /*hamburder menu*/
@@ -278,11 +314,7 @@ button a {
     .page-container {
         flex-direction: column;
     }
-    .author-info {
-        width: 80%;
-        flex-direction: row;
-        justify-content: space-around;
-    }
+    
     .author-photo {
         width: 150px;
     }
@@ -290,7 +322,9 @@ button a {
         width: 100%;
         flex-direction: column;
     }
+    .full-container {
 
+    }
     .container {
         width: 95%;
     }

@@ -37,7 +37,6 @@ h2 {
     font-size: 2.7em;
     text-align: center;
     font-family: 'roboto slab';
-    color: darkblue;
 }
 
 h3 {
@@ -81,7 +80,7 @@ p, label, a, a:visited {
     text-decoration: none;
 }
 
-a.newbutton {
+a.newbutton, .newbutton {
     display: inline-block;
     padding: 0.35em 1.2em;
     color: #120B1E;
@@ -94,11 +93,13 @@ a.newbutton {
     font-weight: 300;
     transition: all 0.3s;
     width: 30%;
+    font-size: 1em;
     min-width: 150px;
     max-width: 170px;
+    cursor: pointer;
 }
 
-a.newbutton:hover {
+a.newbutton:hover, .newbutton:hover {
     color: #ffffff;
     background-color: #120B1E;
 }
@@ -177,6 +178,13 @@ a.newbutton:hover {
     align-items: center;
 }
 
+.long-line {
+    width: 350px;
+    height: 3px;
+    background: #f5f5f5;
+    text-align: center;
+}
+
 footer {
     display: flex;
     justify-content: center;
@@ -193,44 +201,49 @@ footer {
 .form-input {
     padding: 5px; 
     min-width: 60%;
-}
-
-/*.button {
-    padding: 6px;
+    padding: 6px 30px;
+    font-size: 0.9em;
+    font-family: roboto;
     border: none; 
-    background-color: lightblue;
-    cursor: pointer;
-    border-radius: 6px;
-    border-bottom: rgb(91, 91, 145) solid 2px;
-}*/
-
-/*comment spacing and styling*/
-.comment-flag {
-    cursor: pointer;
+    border-bottom: 1px solid #999;
+    resize: none;
+    color: black;
 }
 
-.alert {
-    border: red solid 2px;
+textarea {
+    height: 20px;
 }
-
-.long-line {
-    width: 350px;
-    height: 3px;
-    background: #f5f5f5;
-    text-align: center;
-    
+.relative {
+    position: relative;
+    min-height: 60px;
+}
+label {
+    position: absolute; 
+    left: 0;
+    top: 40%;
 }
 
 .comment-reported {
     color: red;
 }
-
-/*creator editor*/
-#default {
-    width: 90%;
-    min-height: 200px;
-    visibility: visible;
+.alert {
+    border: red solid 2px;
 }
+
+.comment-flag {
+    cursor: pointer;
+    
+}
+.comment-text {
+    position: absolute;
+    left: 26px;
+}
+
+.flagdiv {
+    position: absolute;
+    left: 0;
+}
+
 @media screen and (max-width: 768px) {
     /*hamburder menu*/
     .line {
@@ -265,6 +278,13 @@ footer {
     /*main section*/
     .page-container {
         flex-direction: column;
+    }
+
+    h1 {
+        overflow-wrap: normal!important;
+        white-space: pre-wrap;
+        animation: none; duration timing-function delay iteration-count direction fill-mode;
+        border-right: none; 
     }
     .author-info {
         width: 80%;

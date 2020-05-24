@@ -11,25 +11,25 @@
         
         <div class="latest-posts">
           <?php
-          //while index is less than 2
-           foreach ($posts as $post)
+         
+           for ($i =0; $i < 3; $i++)
            {
             ?>
            <div class="blog-post">
                <h3>
-                   <?= htmlspecialchars($post->getTitle()); ?>
+                   <?= htmlspecialchars($posts[$i]->getTitle()); ?>
                </h3>
-               <h4>Publié <em><?= htmlspecialchars($post->getCreationDate())?></em> </h4>
+               <h4>Publié <em><?= htmlspecialchars($posts[$i]->getCreationDate())?></em> </h4>
                <?php 
                 $frontend = new \EmmaLiefmann\blog\controller\Frontend();
-                $summary = $frontend-> wordLimiter($post->getContent()); 
+                $summary = $frontend-> wordLimiter($posts[$i]->getContent()); 
                 
                 //Just get five, then see all link for loop? ?> 
             
                 <p><?= $summary;?></p>
                
                <br/>
-               <a class="newbutton" href="index.php?action=post&id=<?= $post->getId() ?>">CONTINUER <i class="fas fa-long-arrow-alt-right"></i></a>
+               <a class="newbutton" href="index.php?action=post&id=<?= $posts[$i]->getId() ?>">CONTINUER <i class="fas fa-long-arrow-alt-right"></i></a>
                
                
            </div>

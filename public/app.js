@@ -12,7 +12,6 @@ const commentSubmission = document.getElementById('comment');
 // for editing forms
 //use query selector and class as only one per page? 
 const editorForm = document.querySelector('.editor-form');
-console.log(editorForm);
 const editTitle = document.querySelector('#title');
 const editPost = document.querySelector('#post');
 
@@ -31,26 +30,31 @@ window.addEventListener("load", () => {
     };     
 });
 
-
-/*commentForm.addEventListener('submit', (e) => {
-    
+if(!commentForm) {
+    //do nothing, carry on with the code 
+} else {
+    commentForm.addEventListener('submit', (e) => {
     commentAuthor.classList.remove('alert');
     commentSubmission.classList.remove('alert');
-    if (commentAuthor.value == '') {
+        if (commentAuthor.value == '') {
         e.preventDefault();
-        commentAuthor.classList.add('alert');
-        console.log('author');
-    } 
-    if (commentSubmission.value == '') {
+        commentAuthor.classList.add('alert');   
+    } if (commentSubmission.value == '') {
         e.preventDefault();
         commentSubmission.classList.add('alert');
-        console.log('comment');
+    } if (commentSubmission.value == '' && commentAuthor.value == '') {
+        e.preventDefault();
+        alert('Veuillez laisser un commentaire');
     }
     else {
         return;
     }
-});*/
+});
+};
 
+if(!editorForm) {
+    //do nothing, carry on with the code
+} else {
 editorForm.addEventListener('submit', (e) => {
     editTitle.classList.remove('alert');
     editPost.classList.remove('alert');
@@ -58,12 +62,11 @@ editorForm.addEventListener('submit', (e) => {
         e.preventDefault();
         editTitle.classList.add('alert');
         // check number of characters? 
-    }
-    if (editPost.value == '') {
+    } if (editPost.value == '') {
         e.preventDefault();
         alert('Veuillez ecrire un article');
-    }
-    else {
+    } else {
         return;
     }
-})
+});
+};

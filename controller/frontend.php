@@ -8,18 +8,16 @@ class Frontend
     function listPosts($parameters=null)
     {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
-        
+        $posts = $postManager->getPosts();
         if ($parameters) {
-            $postObjects = $postManager->getPosts();
             require('view/frontend/chapterview.php');
         } else {
-            $posts = $postManager->getHomePosts();
             require('view/frontend/indexview.php');
         }
     }
     
 
-    function wordLimiter( $text, $limit = 260, $chars = '0123456789><' ) 
+    function wordLimiter( $text, $limit = 260, $chars = '0123456789<>' ) 
     {
         if( strlen($text) > $limit ) {
             $words = str_word_count( $text, 2, $chars );
@@ -43,10 +41,14 @@ class Frontend
         $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
         //get in one request via joining tables? 
         $post = $postManager->getPost($id);
-        //check $request has a value, if not send to page 404 redirection header 
-        //otherwise execute as normal 
+        if($post->getId() === null) {
+            header('location: index.php?action=404error');
+        }
+        else {
         $comments = $commentManager->getComments($id);
         require('view/frontend/postview.php');
+        }
+        
     }
 
     function addComment($postId, $author, $comment)
