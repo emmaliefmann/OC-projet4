@@ -27,7 +27,7 @@
             {
                 $flagged = $comment->getFlagged()=== '1'; 
             ?>
-            <div class="relative" id="comments">
+            <div class="relative">
                 <h4><?= htmlspecialchars($comment->getAuthor())?> </h4>
                 <div class="flagdiv">
                     <a href="index.php?action=flagComment&postId=<?=$post->getId()?>&commentId=<?=$comment->getId()?>" title="Signaler ce commentaire">

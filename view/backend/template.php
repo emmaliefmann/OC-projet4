@@ -16,7 +16,6 @@
       selector: 'textarea#post',
       height: 500,
       width: '90%',
-      content_css : '/editorStyle.css'
    });
    </script>
 </head>

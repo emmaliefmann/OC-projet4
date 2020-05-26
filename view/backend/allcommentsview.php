@@ -5,12 +5,11 @@
         <?php foreach ($comments as $comment)
         {
         ?>
-            <h3><?=$comment->getPostId();?></h3>
             <div class="dashboard-article">
                 <li>
                     <?=$comment->getComment();?>
                 </li>
-                <button><a href="index.php?action=admin&page=deleteComment&id=<?=$comment->getComment()?>">supprimer</a></button>
+                <a href="index.php?action=admin&page=deleteComment&id=<?=$comment->getComment()?>" class="newbutton">supprimer</a>
             </div>
         
         <?php

@@ -8,8 +8,6 @@ class Backend {
     {
 
         if (!isset($_SESSION['active'])) {
-            //if unset? opposite of isset
-            //if !isset()
             $login = false ;
         }
         else {
@@ -58,7 +56,9 @@ class Backend {
     public function editPost($id) 
     {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
+        $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
         $post = $postManager->getPost($id);
+        $comments = $commentManager->getComments($id);
         require('view/backend/editview.php');
     }
     

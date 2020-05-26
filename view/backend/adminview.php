@@ -16,7 +16,7 @@
     </div>
     <div class="admin-form">
         <img src="public/images/jean2.jpg" class="author-photo" alt="Photo de Jean" />
-        <form action="index.php?action=login" method="post" class="login">
+        <form action="index.php?action=login" method="post" class="margins">
             <p>
                 <div class="relative">
                     <label for="username"><i class="fas fa-user"></i></label>

@@ -4,7 +4,7 @@
             <img src="public/images/jean3.jpg" class="author-photo" alt="Photo de Jean" />
             <div>
                 <h4>À Propos de l'auteur</h3>
-                <p>Description courte de l'auteur</p>
+                <p class="justify">Jean Forteroche a écrit des livres et des poèmes toute sa vie. Sa visite récente à l'Alaska lui a inspiré à écrire ce livre où il va publier une chapitre par semaine dans son site web.</p>
             </div>
         </aside>
         <div class="posts-section">
@@ -12,7 +12,7 @@
         <div class="latest-posts">
           <?php
          
-           for ($i =0; $i < 3; $i++)
+           for ($i =0; $i < 5; $i++)
            {
             ?>
            <div class="blog-post">
@@ -24,7 +24,7 @@
                 $frontend = new \EmmaLiefmann\blog\controller\Frontend();
                 $summary = $frontend-> wordLimiter($posts[$i]->getContent()); 
                 
-                //Just get five, then see all link for loop? ?> 
+                 ?> 
             
                 <p><?= $summary;?></p>
                

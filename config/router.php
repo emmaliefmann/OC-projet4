@@ -7,13 +7,16 @@ class Router
     public function run() 
     {
         try {
-            if (isset($_GET['action'])) {
+            if (!isset($_GET['action'])) {
+                $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+                $posts =  $frontend-> listPosts();
+            }
+            elseif (isset($_GET['action'])) {
                 if ($_GET['action'] === 'listPosts') {
                     $frontend = new \EmmaLiefmann\blog\controller\Frontend();
                     $posts =  $frontend-> listPosts();
                 }
             
-        
                 elseif ($_GET['action'] === 'post') {
                     $frontend = new \EmmaLiefmann\blog\controller\Frontend();
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -187,20 +190,12 @@ class Router
                         $backend = new \EmmaLiefmann\blog\controller\Backend();
                         $backend->signoutOfAdmin();
                     }
-        
-                    
-                    else {
-                        //404 error, but doesn't work
-                        require('view/404error.php');
-                    }
-                }
-            }
-        
-            else {
-                $frontend = new \EmmaLiefmann\blog\controller\Frontend();
-                $posts =  $frontend-> listPosts();
-            }
-            
+                }     
+            }    
+        else {
+            //404 error, but doesn't work
+            require('view/404error.php');
+        }  
         }
         
         catch(Exception $e) {

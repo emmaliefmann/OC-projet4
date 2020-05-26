@@ -24,7 +24,8 @@ h2 {
 .author-photo {
     width: 200px;
     border-radius: 50%;
-    animation: zoom 2s;
+    -webkit-animation: zoom 2s;
+            animation: zoom 2s;
 }
 .form-input {
     min-width: 60%;
@@ -40,6 +41,14 @@ label {
     position: absolute;
     left: 0;
     top: 20%;
+}
+
+
+@-webkit-keyframes zoom {
+    0% {transform: scale(0.1);
+        opacity: 0; }
+    100% {transform: scale(1);
+        opacity: 1;}
 }
 
 
@@ -119,6 +128,15 @@ p, li, a{
     justify-content: center;
 }
 
+.comments {
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+h4 {
+    margin-right: 10px;
+}
 .container {
     width: 50%;
     min-height: 300px;
@@ -189,6 +207,7 @@ p, li, a{
     display: inline-block;
     padding: 0.35em 1.2em;
     color: #120B1E;
+    background-color: #ffffff;
     font-family: roboto;
     border: 0.16em solid #120B1E;
     margin: 0 0.3em 0.3em 0;
@@ -240,7 +259,7 @@ footer {
     height: 90vh;
 }
 
-.login {
+.margins {
     margin: 20px;
 }
 
@@ -307,11 +326,13 @@ button a {
         height: 100vh;
         width: 100%;
         flex-direction: column;
-        clip-path: circle(100px at 90% -10%);
+        -webkit-clip-path: circle(100px at 90% -10%);
+                clip-path: circle(100px at 90% -10%);
         transition: all 1s ease-out;
     }
     .nav-links-open {
-        clip-path: circle(2000px at 90% -10%);
+        -webkit-clip-path: circle(2000px at 90% -10%);
+                clip-path: circle(2000px at 90% -10%);
     }
     /*main section*/
     .page-container {
