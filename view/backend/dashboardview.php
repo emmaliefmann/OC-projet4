@@ -1,15 +1,7 @@
 <?php ob_start(); ?>
     <main class="flexbox">
-        <!--<div class="full-container">
-            <h2>Actions</h2>
-            <div class="flexbox">
-                <a class="newbutton" href="index.php?action=admin&page=create">Ecrire nouvelle article</a>
-                <a class="newbutton" href="index.php?action=admin&page=moderate">voir tout les commentaires</a>
-            </div>
-        </div>-->
         <section class="container">
             <h2>Vos articles et leurs commentaires</h3>
-            
                 <?php
                 foreach ($posts as $post)
                 {
@@ -49,7 +41,6 @@
                 }
             }
             ?>
-         
         </section>
     </main>
 <?php $content = ob_get_clean(); ?>

@@ -74,6 +74,12 @@ header {
     
 }
 
+.flex {
+    display: flex; 
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .logo {
     padding: 10px;
     font-size: 25px;
@@ -94,7 +100,7 @@ a.newbutton, .newbutton {
     color: #120B1E;
     font-family: roboto;
     border: 0.16em solid #120B1E;
-    margin: 20px 5px 5px 0px;
+    margin: 20px 10px 10px 0px;
     border-radius: 0.12em;
     text-decoration: none;
     text-align: center;
@@ -160,21 +166,22 @@ nav {
     width: 200px;
     border-radius: 50%;
 }
-.posts-section {
-    width: 70%;
+.headshot {
+    float: left;
+    width: 300px; 
+    margin: 5px 30px 20px 0px;
 }
+
 .latest-posts {
     display: flex;
-    width: 100%;
+    width: 70%;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 .single-post {
-    margin: 20px;
-}
-
-.comments-container {
-    margin: 20px;
+    margin: 40px;
+    margin: auto;
+    max-width: 930px;
 }
 
 .blog-post {
@@ -306,6 +313,7 @@ label {
     .nav-links {
         position: absolute;
         top: 0;
+        z-index: 100;
         background: lightblue;
         height: 100vh;
         width: 100%;
@@ -346,6 +354,10 @@ label {
     }
     .blog-post {
         width: 100%;
-        margin: 20px 0 20px 0;
+        margin: 20px;
+    }
+
+    body.hide {
+        overflow: hidden;
     }
 }

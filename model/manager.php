@@ -3,15 +3,14 @@
 namespace EmmaLiefmann\blog\model;
 
 
+
 class Manager 
 {
-    const DB_HOST = 'mysql:host=localhost;dbname=blog;charset=utf8';
-    const DB_USER = 'root';
-    const DB_PASSWORD = '';
-
     protected function dbConnect()
     {  
-        $db = new \PDO(self::DB_HOST, self::DB_USER, self::DB_PASSWORD);
+        $config = include(__DIR__.'/../config/config.php');
+        $db = new \PDO($config['DB_HOST'], $config['DB_USER'], $config['DB_PASSWORD']);
+        //$db = new \PDO("$config['DB_HOST']", $config['DB_USER'], $config['DB_PASSWORD']);
         return $db;
 
     }

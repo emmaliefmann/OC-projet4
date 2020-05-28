@@ -23,7 +23,7 @@ class CommentManager extends Manager
             $commentObject = $this->buildObject($comment);
             array_push($commentObjects, $commentObject);
         }
-
+        
         return $commentObjects;
     }
 

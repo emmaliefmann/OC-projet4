@@ -5,7 +5,7 @@ namespace EmmaLiefmann\blog\controller;
 
 class Frontend 
 {
-    function listPosts($parameters=null)
+    public function listPosts($parameters=null)
     {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
         $posts = $postManager->getPosts();
@@ -16,9 +16,20 @@ class Frontend
         }
     }
     
-
-    function wordLimiter( $text, $limit = 260, $chars = '0123456789<>' ) 
+    public function flagColor($flagged) 
     {
+        if($flagged) {
+            $message = 'comment-reported';
+        } else {
+            $message = 'comment-flag';
+        }
+        return $message;
+    }
+    public function wordLimiter($text)
+    {
+        $limit = 260;
+        $chars = '0123456789<>';
+        
         if( strlen($text) > $limit ) {
             $words = str_word_count( $text, 2, $chars );
             $words = array_reverse( $words, TRUE );
@@ -35,7 +46,7 @@ class Frontend
         }
         return $text;
     }
-    function post($id)
+    public function post($id)
     {
         $postManager = new \EmmaLiefmann\blog\model\PostManager();
         $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
@@ -51,7 +62,7 @@ class Frontend
         
     }
 
-    function addComment($postId, $author, $comment)
+    public function addComment($postId, $author, $comment)
     {
         $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
         $affectedLines = $commentManager->addComments($postId, $author, $comment);
@@ -64,7 +75,7 @@ class Frontend
         }
     }
 
-    function flagComment($postId, $commentId)
+    public function flagComment($postId, $commentId)
     {
         $commentManager = new \EmmaLiefmann\blog\model\CommentManager();
         $flaggedComment = $commentManager->flagComment($commentId);

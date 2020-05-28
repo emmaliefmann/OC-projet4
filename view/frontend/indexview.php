@@ -1,4 +1,5 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+?>
     <main class="page-container">
         <aside class="author-info">
             <img src="public/images/jean3.jpg" class="author-photo" alt="Photo de Jean" />
@@ -7,11 +8,9 @@
                 <p class="justify">Jean Forteroche a écrit des livres et des poèmes toute sa vie. Sa visite récente à l'Alaska lui a inspiré à écrire ce livre où il va publier une chapitre par semaine dans son site web.</p>
             </div>
         </aside>
-        <div class="posts-section">
-        
         <div class="latest-posts">
           <?php
-         
+    
            for ($i =0; $i < 5; $i++)
            {
             ?>
@@ -23,15 +22,9 @@
                <?php 
                 $frontend = new \EmmaLiefmann\blog\controller\Frontend();
                 $summary = $frontend-> wordLimiter($posts[$i]->getContent()); 
-                
-                 ?> 
-            
+                ?> 
                 <p><?= $summary;?></p>
-               
-               <br/>
-               <a class="newbutton" href="index.php?action=post&id=<?= $posts[$i]->getId() ?>">CONTINUER <i class="fas fa-long-arrow-alt-right"></i></a>
-               
-               
+                <a class="newbutton" href="index.php?action=post&id=<?= $posts[$i]->getId() ?>">CONTINUER <i class="fas fa-long-arrow-alt-right"></i></a>
            </div>
            <?php 
            }

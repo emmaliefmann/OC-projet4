@@ -2,6 +2,7 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const links = document.querySelectorAll('.nav-links li');
 const commentFlag = document.querySelectorAll('.comment-flag');
+const body = document.querySelector('body');
 
 // for comment form
 const commentBtn = document.getElementById('submit-comment');
@@ -17,7 +18,7 @@ const editPost = document.querySelector('#post');
 
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('nav-links-open');
-    console.log('mobile');
+    body.classList.toggle('hide');
 });
 
     
@@ -30,27 +31,26 @@ window.addEventListener("load", () => {
     };     
 });
 
-if(!commentForm) {
-    //do nothing, carry on with the code 
-} else {
-    commentForm.addEventListener('submit', (e) => {
-    commentAuthor.classList.remove('alert');
-    commentSubmission.classList.remove('alert');
-        if (commentAuthor.value == '') {
-        e.preventDefault();
-        commentAuthor.classList.add('alert');   
-    } if (commentSubmission.value == '') {
-        e.preventDefault();
-        commentSubmission.classList.add('alert');
-    } if (commentSubmission.value == '' && commentAuthor.value == '') {
-        e.preventDefault();
-        alert('Veuillez laisser un commentaire');
-    }
-    else {
-        return;
-    }
-});
-};
+if(commentForm) {
+    
+        commentForm.addEventListener('submit', (e) => {
+        commentAuthor.classList.remove('alert');
+        commentSubmission.classList.remove('alert');
+            if (commentAuthor.value == '') {
+            e.preventDefault();
+            commentAuthor.classList.add('alert');   
+        } if (commentSubmission.value == '') {
+            e.preventDefault();
+            commentSubmission.classList.add('alert');
+        } if (commentSubmission.value == '' && commentAuthor.value == '') {
+            e.preventDefault();
+            alert('Veuillez laisser un commentaire');
+        }
+        else {
+            return;
+        }
+    });
+};  
 
 if(!editorForm) {
     //do nothing, carry on with the code

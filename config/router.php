@@ -14,7 +14,13 @@ class Router
             elseif (isset($_GET['action'])) {
                 if ($_GET['action'] === 'listPosts') {
                     $frontend = new \EmmaLiefmann\blog\controller\Frontend();
+                    
                     $posts =  $frontend-> listPosts();
+                    $summary = $frontend-> wordLimiter();
+                }
+
+                elseif ($_GET['action'] === 'author') {
+                    require('view/frontend/author.php');
                 }
             
                 elseif ($_GET['action'] === 'post') {
@@ -78,7 +84,7 @@ class Router
                     if ($login === false) {
                         require('view/backend/adminview.php');
                     }
-        
+                    
                     elseif (isset($_GET['page']) && $_GET['page'] === 'create' ) {
                         $backend = new \EmmaLiefmann\blog\controller\Backend();
                         $backend->create();
@@ -190,15 +196,15 @@ class Router
                         $backend = new \EmmaLiefmann\blog\controller\Backend();
                         $backend->signoutOfAdmin();
                     }
+                }  
+                else {
+                    require('view/404error.php');
                 }     
             }    
-        else {
-            //404 error, but doesn't work
-            require('view/404error.php');
-        }  
+        
         }
         
-        catch(Exception $e) {
+        catch(\Exception $e) {
             $errorMessage = $e->getMessage();
             require('view/errorview.php');
         }
