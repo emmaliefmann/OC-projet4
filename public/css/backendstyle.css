@@ -37,7 +37,7 @@ h2 {
     resize: none;
     color: black;
 }
-label {
+.adminlabel {
     position: absolute;
     left: 0;
     top: 20%;

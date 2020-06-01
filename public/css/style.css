@@ -301,6 +301,10 @@ label {
         background: black;
         margin: 5px;
     }
+    
+    .latest-posts {
+        margin: auto;
+    }
 
     .hamburger {
         position: absolute; 

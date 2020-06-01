@@ -19,11 +19,11 @@
         <form action="index.php?action=login" method="post" class="margins">
             <p>
                 <div class="relative">
-                    <label for="username"><i class="fas fa-user"></i></label>
+                    <label for="username"><i class="fas fa-user" class="adminlabel"></i></label>
                     <input type="text" name="username" class="form-input"/><br/>
                 </div>
                 <div class="relative">
-                    <label for="password"><i class="fas fa-key"></i></label>
+                    <label for="password"><i class="fas fa-key" class="adminlabel"></i></label>
                     <input type="password" name="password" class="form-input"/><br/><br/>
                 </div>
                 <div class="buttoncontainer">

@@ -3,10 +3,10 @@
         <div class="single-post">
             <h2><?= htmlspecialchars($post->getTitle()) ?></h2>
             <h4>Publié : <?= htmlspecialchars($post->getCreationDate());?></h4>
-            <?=$post->getContent()?>
+            <p><?=$post->getContent()?></p>
         </div>
         <div class="single-post">
-            <h2>Commentaires</h2>
+            <h2 id="comments">Commentaires</h2>
             <form action="index.php?action=addComment&amp;id=<?= $post->getId() ?>" id="comment-form" method="post">
                 <div class="relative">
                     <label for="author"><i class="far fa-user"></i></label><br/>
