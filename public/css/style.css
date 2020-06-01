@@ -304,14 +304,17 @@ label {
     
     .latest-posts {
         margin: auto;
+        width: 80%;
     }
-
+    .single-post {
+        margin: 15px;
+    }
     .hamburger {
         position: absolute; 
         cursor: pointer;
         right: 5%;
         top: 20%;
-        z-index: 10;
+        z-index: 110;
         margin-right: 15px;
     }
     .nav-links {
@@ -345,8 +348,9 @@ label {
     }
     .author-info {
         width: 80%;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
     }
     .author-photo {
         width: 150px;

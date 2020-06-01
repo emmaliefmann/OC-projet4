@@ -14,9 +14,7 @@ class Router
             elseif (isset($_GET['action'])) {
                 if ($_GET['action'] === 'listPosts') {
                     $frontend = new \EmmaLiefmann\blog\controller\Frontend();
-                    
                     $posts =  $frontend-> listPosts();
-                    $summary = $frontend-> wordLimiter();
                 }
 
                 elseif ($_GET['action'] === 'author') {
